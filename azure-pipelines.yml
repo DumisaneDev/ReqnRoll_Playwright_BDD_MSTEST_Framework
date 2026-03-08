@@ -36,7 +36,7 @@ steps:
   displayName: 'Publish MSTest Results (.trx)'
   inputs:
     testResultsFormat: 'VSTest'
-    testResultsFiles: '**/TestResults/MSTEST_Report_*/TestReport.trx'
+    testResultsFiles: '$(Build.SourcesDirectory)/TestResults/MSTEST_Report_*/TestReport.trx'
     mergeTestResults: true
     failTaskOnFailedTests: true
   condition: succeededOrFailed()

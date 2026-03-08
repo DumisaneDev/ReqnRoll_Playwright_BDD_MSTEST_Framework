@@ -1,8 +1,32 @@
-Gemini.md
+# ReqnRoll/SpecFlow/Playwright BDD Framework - .gitignore
 
-# Visual Studio
+# Workspace files
+Gemini.md
 .vs/
+.idea/
 *.user
 *.userosscache
 *.sln.docstates
 *.suo
+
+# Build outputs
+bin/
+obj/
+
+# Test Results
+TestResults/
+Test-Results/
+*.trx
+*.log
+
+# Playwright
+.playwright/
+ms-playwright/
+
+# Environment
+.env
+.env.*
+
+# NuGet
+packages/
+*.nupkg

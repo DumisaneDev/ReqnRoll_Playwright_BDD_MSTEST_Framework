@@ -22,12 +22,16 @@ Write-Host "Parallel: $Parallel"
 Write-Host "Show Output: $ShowOutput"
 Write-Host "Results Directory: $resultsDir"
 
-if (!(Test-Path -Path ".\TestResults")) {
-    New-Item -ItemType Directory -Path ".\TestResults"
-    New-Item -ItemType Directory -Path ".\TestResults\Screenshots"
-    New-Item -ItemType Directory -Path ".\TestResults\Videos"
-    New-Item -ItemType Directory -Path ".\TestResults\Traces"
+if (Test-Path -Path ".\TestResults") {
+    Write-Host "Cleaning existing TestResults..." -ForegroundColor Cyan
+    Remove-Item -Path ".\TestResults" -Recurse -Force
 }
+
+Write-Host "Creating new TestResults directory structure..." -ForegroundColor Cyan
+New-Item -ItemType Directory -Path ".\TestResults"
+New-Item -ItemType Directory -Path ".\TestResults\Screenshots"
+New-Item -ItemType Directory -Path ".\TestResults\Videos"
+New-Item -ItemType Directory -Path ".\TestResults\Traces"
 
 $projectPath = ".\ReqnRoll_Playwright_BDD_MSTEST_Framework\ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj"
 $settingsPath = ".\ReqnRoll_Playwright_BDD_MSTEST_Framework\.runsettings"
