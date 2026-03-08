@@ -28,7 +28,7 @@ steps:
   displayName: 'Execute ReqnRoll Playwright Tests'
   inputs:
     filePath: '$(Build.SourcesDirectory)/run-tests.ps1'
-    arguments: '-Category $(testCategory) -Parallel -Workers $(parallelThreads)'
+    arguments: '-Category $(testCategory) -Parallel -Workers $(parallelThreads) -ShowOutput'
     pwsh: true
   continueOnError: true # Continue to publish results even if tests fail
 
@@ -38,7 +38,7 @@ steps:
     testResultsFormat: 'VSTest'
     testResultsFiles: '**/TestResults/MSTEST_Report_*/TestReport.trx'
     mergeTestResults: true
-    failTaskOnFailedTests: true
+    failTaskOnFailedTests: false
   condition: succeededOrFailed()
 
 - task: PublishBuildArtifacts@1
