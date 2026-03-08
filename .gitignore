@@ -1,0 +1,8 @@
+Gemini.md
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo

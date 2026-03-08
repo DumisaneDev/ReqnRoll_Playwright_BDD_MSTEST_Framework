@@ -1,0 +1,21 @@
+{
+    "TestSetting": {
+        "BaseUrl": "http://coreopsdev.lubanzi.tech/Login",
+        "MailsacApiKey": "k_y32KCu4b3fDDhhvVHsVz8vVUjYwKpHlMd4b",
+        "Headless": true,
+
+        "EmployeeEmail": "employee@mailsac.com",
+        "EmpUsername": "phumzilem@lubanzi.tech",
+        "EmpPassword": "Buhle@001",
+        "AdminEmail": "Admin@Lubanzi.tech",
+        "AdminPassword": "Test@001",
+
+        "RegisterUserEmail": "employee@mailsac.com",
+        "RegisterUserPassword": "wE7?wG8Qh",
+        "RegisterUserFirstName": "Bruce",
+        "RegisterUserLastName": "Wayne",
+        "RegisterUserPhoneNumber": "07300841554",
+        "RegisterUserGender": "Male"
+    }
+
+}

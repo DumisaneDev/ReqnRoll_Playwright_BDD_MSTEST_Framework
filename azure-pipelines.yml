@@ -1,0 +1,74 @@
+trigger:
+- main
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Debug'
+  testCategory: 'smoke' # Default category, can be overridden at runtime
+  parallelThreads: 3    # Default parallel workers
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK 10.x'
+  inputs:
+    packageType: 'sdk'
+    version: '10.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+- task: PowerShell@2
+  displayName: 'Install Project Dependencies & Playwright Browsers'
+  inputs:
+    filePath: '$(Build.SourcesDirectory)/dependencies-install.ps1'
+    pwsh: true
+
+- task: PowerShell@2
+  displayName: 'Execute ReqnRoll Playwright Tests'
+  inputs:
+    filePath: '$(Build.SourcesDirectory)/run-tests.ps1'
+    arguments: '-Category $(testCategory) -Parallel -Workers $(parallelThreads)'
+    pwsh: true
+  continueOnError: true # Continue to publish results even if tests fail
+
+- task: PublishTestResults@2
+  displayName: 'Publish MSTest Results (.trx)'
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/TestResults/MSTEST_Report_*/TestReport.trx'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+  condition: succeededOrFailed()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Screenshots'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/TestResults/Screenshots'
+    ArtifactName: 'Screenshots'
+    publishLocation: 'Container'
+  condition: always()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Videos'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/TestResults/Videos'
+    ArtifactName: 'Videos'
+    publishLocation: 'Container'
+  condition: always()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Traces'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/TestResults/Traces'
+    ArtifactName: 'Traces'
+    publishLocation: 'Container'
+  condition: always()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Test Execution Reports'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/TestResults'
+    ArtifactName: 'FullTestResultsReport'
+    publishLocation: 'Container'
+  condition: always()
