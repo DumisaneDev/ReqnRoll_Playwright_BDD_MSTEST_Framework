@@ -7,7 +7,7 @@ This document provides a non-technical overview of the **ReqnRoll Playwright BDD
 ::: mermaid
 graph LR
     %% LAYER 1: INPUTS
-    subgraph INPUT_LAYER ["🎯 1. Business Requirements"<br/>]
+    subgraph INPUT_LAYER ["🎯 1. Business Rules"]
         direction TB
         Gherkin["📄 Gherkin Feature Files<br/>User Stories in Plain English<br/>(Given, When, Then)"]
     end
