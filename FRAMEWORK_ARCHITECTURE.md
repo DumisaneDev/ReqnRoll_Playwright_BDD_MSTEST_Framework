@@ -7,34 +7,34 @@ This document provides a non-technical overview of the **ReqnRoll Playwright BDD
 ::: mermaid
 graph LR
     %% LAYER 1: INPUTS
-    subgraph INPUT_LAYER [🎯 1. Business Requirements]
+    subgraph INPUT_LAYER ["🎯 1. Business Requirements"]
         direction TB
         Gherkin["📄 Gherkin Feature Files<br/>User Stories in Plain English<br/>(Given, When, Then)"]
     end
 
     %% LAYER 2: AUTOMATION CODE
-    subgraph CODE_LAYER [⚙️ 2. Automation Logic]
+    subgraph CODE_LAYER ["⚙️ 2. Automation Logic"]
         direction TB
         Steps["Step Definitions<br/>Translates English to Code"]
         Hooks["Test Hooks<br/>Handles Setup & Teardown"]
     end
 
     %% LAYER 3: PAGE OBJECT MODEL
-    subgraph POM_LAYER [🏛️ 3. Structure & Elements]
+    subgraph POM_LAYER ["🏛️ 3. Structure & Elements"]
         direction TB
         Pages["Page Object Classes<br/>Maps of Website Elements"]
         BasePage["Base Action Library<br/>Reusable Clicks & Inputs"]
     end
 
     %% LAYER 4: ENGINE & DATA
-    subgraph ENGINE_LAYER [🚀 4. Execution Engine]
+    subgraph ENGINE_LAYER ["🚀 4. Execution Engine"]
         direction TB
         Playwright["Playwright Driver<br/>Controls the Browser"]
         Config[("📂 Config & Test Data<br/>JSON & RunSettings")]
     end
 
     %% LAYER 5: OUTPUTS
-    subgraph OUTPUT_LAYER [📊 5. Actionable Insights]
+    subgraph OUTPUT_LAYER ["📊 5. Actionable Insights"]
         direction TB
         LivingDoc["📜 Living Documentation<br/>Stakeholder Progress Report"]
         Screenshots[("📸 Screenshot Vault<br/>Organized Visual Evidence")]
