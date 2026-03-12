@@ -40,7 +40,7 @@ So i can aceess my admin-privallaged functions to perform my operationals functi
 
 | Users        |
 | Employee     |
-| admin        |", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+| Admin        |", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
 #line 1 "Login.feature"
 #line hidden

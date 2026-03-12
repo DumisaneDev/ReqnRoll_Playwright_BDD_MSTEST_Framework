@@ -19,16 +19,30 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         ILocator loc_btnSubmit => _page.Locator("xpath=//input[@id=\"btnSubmit\"]");
 
         //Web Action methods
-        public async Task enterEmail(String email) => await populateInputField(loc_txtEmail, email);
+        public async Task enterEmail(String email, string scenarioTitle)
+        {
+            await populateInputField(loc_txtEmail, email, scenarioTitle);
+        }
 
-        public async Task clickSubmitButton() => await clickElement(loc_btnSubmit);
+        public async Task clickSubmitButton(string scenarioTitle)
+        {
+            await clickElement(loc_btnSubmit, scenarioTitle);
+        }
 
         //assertion methods
         public async Task isUserOnForgotPasswordPage(string expectedHeaderText, string expectedUrl, string expectedBtnText)
         {
-            await Expect(loc_h1pageHeader).ToHaveTextAsync(expectedHeaderText);
-            await Expect(_page).ToHaveURLAsync(expectedUrl);
-            await Expect(loc_btnSubmit).ToHaveValueAsync(expectedBtnText);
+            try
+            {
+                await Expect(loc_h1pageHeader).ToHaveTextAsync(expectedHeaderText);
+                await Expect(_page).ToHaveURLAsync(expectedUrl);
+                await Expect(loc_btnSubmit).ToHaveValueAsync(expectedBtnText);
+            }
+            catch (Exception ex) 
+            {
+                Log.Information($"Exception hit when verifying user is on forgot password page...");
+                _errorTranslator.Translate(ex);
+            }
         }
     }
 }

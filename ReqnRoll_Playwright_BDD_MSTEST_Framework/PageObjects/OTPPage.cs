@@ -26,12 +26,12 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         ILocator loc_lblInvalidOTPError => _page.Locator("//span[@id=\"lblMessage\"]");
 
         //Web Action methods
-        public async Task enterOTP(String otp) => await populateInputField(loc_txtOtp, otp);
-        public async Task clickVerifyOTP() => await clickElement(loc_btnVerfifyOTp);
+        public async Task enterOTP(String otp,string scenarioTitle) => await populateInputField(loc_txtOtp, otp, scenarioTitle);
+        public async Task clickVerifyOTP(string scenarioTitle) => await clickElement(loc_btnVerfifyOTp, scenarioTitle);
 
         public async Task handleSucessPopup(string expectedPopupText, string btnName) => await handlePopupModel(loc_mdlSucessPopup, expectedPopupText, btnName);
 
-        public async Task clickLoginLink() => await clickElement(loc_lnkLogin);
+        public async Task clickLoginLink(string scenarioTitle) => await clickElement(loc_lnkLogin, scenarioTitle);
         public async Task verifyIncorrectOTPEntry(string expectedMsg) =>  await Expect(loc_lblInvalidOTPError).ToHaveTextAsync(expectedMsg);
     }
 }

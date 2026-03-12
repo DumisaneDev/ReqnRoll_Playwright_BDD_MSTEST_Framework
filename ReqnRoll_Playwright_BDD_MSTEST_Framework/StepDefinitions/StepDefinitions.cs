@@ -5,6 +5,7 @@ using ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects;
 using Reqnroll;
 using ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils;
 using static Microsoft.Playwright.Assertions;
+using Gherkin.Ast;
 
 namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
 {
@@ -15,16 +16,18 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         private readonly ForgotPasswordPage _forgotPasswordPage;
         private readonly RegisterPage _registerPage;
         private readonly DashboardPage _dashboardPage;
+        private readonly ScenarioContext _scenarioContext;
 
         public StepDefinitions(LoginPage loginPage, 
             ForgotPasswordPage forgotPasswordPage, 
             RegisterPage registerPage,
-            DashboardPage dashboardPage) 
+            DashboardPage dashboardPage, ScenarioContext scenarioContext) 
         {
             _loginPage = loginPage;
             _forgotPasswordPage = forgotPasswordPage;
             _registerPage = registerPage;
             _dashboardPage = dashboardPage;
+            _scenarioContext = scenarioContext;
         }
 
         // --- Common Steps ---
@@ -33,7 +36,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         public async Task GivenIAmOnTheLoginPageOfTheTestSystem()
         {
             var BaseUrl = ConfigReader.getValue("BaseUrl");
-             await _loginPage.goToPage(BaseUrl);
+             await _loginPage.goToPage(BaseUrl, _scenarioContext.ScenarioInfo.Title);
              await _loginPage.isUserOnLoginPage("Login", BaseUrl, "Login");
         }
 
@@ -50,7 +53,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         public async Task WhenIEnterAValidEmailAddress()
         {
             var validEmail = ConfigReader.getValue("EmpUsername");
-            await _loginPage.enterEmail(validEmail);
+            await _loginPage.enterEmail(validEmail, _scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I enter a valid password,")]
@@ -58,27 +61,27 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         {
            var validPassword = ConfigReader.getValue("EmpPassword");
             Console.WriteLine($"Valid Password: {validPassword}");
-            await _loginPage.enterPassword(validPassword);
+            await _loginPage.enterPassword(validPassword, _scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I enter a admin email address,")]
         public async Task WhenIEnterAAdminEmailAddress()
         {
             var adminEmail = ConfigReader.getValue("AdminEmail");
-            await _loginPage.enterEmail(adminEmail);
+            await _loginPage.enterEmail(adminEmail, _scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I enter an admin password,")]
         public async Task WhenIEnterAdminPassword()
         {
             var adminPassword = ConfigReader.getValue("AdminPassword");
-            await _loginPage.enterPassword(adminPassword);
+            await _loginPage.enterPassword(adminPassword, _scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I click the login button,")]
         public async Task WhenIClickTheLoginButton()
         {
-            await _loginPage.clickLoginButton();
+            await _loginPage.clickLoginButton(_scenarioContext.ScenarioInfo.Title);
         }
 
         [Then("see a welcome message of {string} on the page.")]
@@ -90,25 +93,25 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         [Then("see the tabs for for my role {string}, {string}, {string}, {string}, {string}, {string} and Logout.")]
         public async Task ThenSeeTheTabsForForMyRole(string tab1, string tab2, string tab3, string tab4, string tab5, string tab6)
         {
-            await _dashboardPage.isEmployeeOnDashboard(tab1, tab2, tab3, tab4,tab5, tab6);
+            await _dashboardPage.isEmployeeOnDashboard(tab1, tab2, tab3, tab4,tab5, tab6,_scenarioContext.ScenarioInfo.Title);
         }
 
         [Then("see the tabs for for my role DashBoard, Project, Employee, Clients, Timesheet, Room Booking, Permissions, Work Allocation, Leave, Report, Logout.")]
         public async Task ThenSeeTheTabsForForMyRoleAdmin()
         {
-            await _dashboardPage.isAdminOnDashboard();
+            await _dashboardPage.isAdminOnDashboard(_scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I enter an invalid email address {string},")]
         public async Task WhenIEnterAnInvalidEmailAddress(string email)
         {
-            await _loginPage.enterEmail(email);
+            await _loginPage.enterEmail(email, _scenarioContext.ScenarioInfo.Title);
         }
 
         [When("I enter an invalid password {string},")]
         public async Task WhenIEnterAnInvalidPassword(string password)
         {
-          await _loginPage.enterPassword(password);
+          await _loginPage.enterPassword(password, _scenarioContext.ScenarioInfo.Title);
         }
 
         [Then("I should remain on the login page indicated by the url remaining the same,")]

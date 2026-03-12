@@ -25,42 +25,42 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         ILocator loc_lnkLogin => _page.Locator("xpath=//a[@id=\"lnkRegister\"]");
 
         //Web Action methods
-        public async Task enterEmail(String email)
+        public async Task enterEmail(String email, string scenarioTitle)
         {
-            await populateInputField(loc_txtEmail, email);
+            await populateInputField(loc_txtEmail, email, scenarioTitle);
         }
 
-        public async Task enterFirstName(String firstName)
+        public async Task enterFirstName(String firstName, string scenerioTitle)
         {
-            await populateInputField(loc_txtFirstName, firstName);
+            await populateInputField(loc_txtFirstName, firstName, scenerioTitle);
         }
 
-        public async Task enterLastName(String lastName)
+        public async Task enterLastName(String lastName, string scenerioTitle)
         {
-            await populateInputField(loc_txtLastName, lastName);
+            await populateInputField(loc_txtLastName, lastName, scenerioTitle);
         }
 
-        public async Task enterPhoneNumber(String phoneNumber)
+        public async Task enterPhoneNumber(String phoneNumber, string scenerioTitle)
         {
-            await populateInputField(loc_txtPhoneNumber, phoneNumber);
+            await populateInputField(loc_txtPhoneNumber, phoneNumber, scenerioTitle);
         }
 
-        public async Task selectGender(String gender)
+        public async Task selectGender(String gender, string scenarioTitle)
         {
-            await selectDropdownValue(loc_txtGender, gender);
+            await selectDropdownValue(loc_txtGender, gender, scenarioTitle);
         }
 
-        public async Task enterPassword(String password)
+        public async Task enterPassword(String password, string scenarioTitle)
         {
-            await populateInputField(loc_txtPassword, password);
+            await populateInputField(loc_txtPassword, password, scenarioTitle);
         }
-        public async Task clickRegisterButton()
+        public async Task clickRegisterButton(string scenarioTitle)
         {
-            await clickElement(loc_btnRegister);
+            await clickElement(loc_btnRegister, scenarioTitle);
         }
-        public async Task navigatetoLoginPage()
+        public async Task navigatetoLoginPage(string scenarioTitle)
         {
-            await clickElement(loc_lnkLogin);
+            await clickElement(loc_lnkLogin, scenarioTitle);
         }
 
         public async Task<string> getPasswordStrengthMessage()

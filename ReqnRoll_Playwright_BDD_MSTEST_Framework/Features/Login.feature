@@ -13,7 +13,7 @@ So i can aceess my admin-privallaged functions to perform my operationals functi
 
 | Users        |
 | Employee     |
-| admin        |
+| Admin        |
 
 Scenario: Successful Login as An Employee User
 	Given I am on the login page of the test system,

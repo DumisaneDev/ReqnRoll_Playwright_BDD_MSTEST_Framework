@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions;
 using ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils;
 using static Microsoft.Playwright.Assertions;
 
@@ -52,31 +53,50 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             string employeeTabText,
             string timesheetTabText,
             string roomBookingTabText,
-            string permissionsTabText
+            string permissionsTabText,
+            string scenarioTitle
             ) 
         {
-            await Expect(loc_lnkDashboard).ToHaveTextAsync(dashTabText);
-            await Expect(loc_lnkProject).ToHaveTextAsync(projectTabText);
-            await Expect(loc_lnkEmployee).ToHaveTextAsync(employeeTabText);
-            await Expect(loc_lnkTimesheet).ToHaveTextAsync(timesheetTabText);
-            await Expect(loc_lnkRoomBooking).ToHaveTextAsync(roomBookingTabText);
-            await Expect(loc_lnkPermissions).ToHaveTextAsync(permissionsTabText);
-            await Expect(loc_lnkLogout).ToBeVisibleAsync();
+            try
+            {
+                await Expect(loc_lnkDashboard).ToHaveTextAsync(dashTabText);
+                await Expect(loc_lnkProject).ToHaveTextAsync(projectTabText);
+                await Expect(loc_lnkEmployee).ToHaveTextAsync(employeeTabText);
+                await Expect(loc_lnkTimesheet).ToHaveTextAsync(timesheetTabText);
+                await Expect(loc_lnkRoomBooking).ToHaveTextAsync(roomBookingTabText);
+                await Expect(loc_lnkPermissions).ToHaveTextAsync(permissionsTabText);
+                await Expect(loc_lnkLogout).ToBeVisibleAsync();
+                await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, $"Validating successfully employee entry");
+            }
+            catch (Exception ex) 
+            {
+                Log.Information($"Exception hit when verifying employee dashboard tabs...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
 
-        public async Task isAdminOnDashboard() 
+        public async Task isAdminOnDashboard(string scenarioTitle) 
         {
-            await Expect(loc_lnkDashboard).ToBeVisibleAsync();
-            await Expect(loc_lnkProject).ToBeVisibleAsync();
-            await Expect(loc_lnkEmployee).ToBeVisibleAsync();
-            await Expect(loc_lnkClient).ToBeVisibleAsync();
-            await Expect(loc_lnkTimesheet).ToBeVisibleAsync();
-            await Expect(loc_lnkRoomBooking).ToBeVisibleAsync();
-            await Expect(loc_lnkPermissions).ToBeVisibleAsync();
-            await Expect(loc_lnkWorkAllocationList).ToBeVisibleAsync();
-            await Expect(loc_ddlLeave).ToBeVisibleAsync();
-            await Expect(loc_lnkReports).ToBeVisibleAsync();
-            await Expect(loc_lnkLogout).ToBeVisibleAsync();
+            try
+            {
+                await Expect(loc_lnkDashboard).ToBeVisibleAsync();
+                await Expect(loc_lnkProject).ToBeVisibleAsync();
+                await Expect(loc_lnkEmployee).ToBeVisibleAsync();
+                await Expect(loc_lnkClient).ToBeVisibleAsync();
+                await Expect(loc_lnkTimesheet).ToBeVisibleAsync();
+                await Expect(loc_lnkRoomBooking).ToBeVisibleAsync();
+                await Expect(loc_lnkPermissions).ToBeVisibleAsync();
+                await Expect(loc_lnkWorkAllocationList).ToBeVisibleAsync();
+                await Expect(loc_ddlLeave).ToBeVisibleAsync();
+                await Expect(loc_lnkReports).ToBeVisibleAsync();
+                await Expect(loc_lnkLogout).ToBeVisibleAsync();
+                await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, $"Validating successfully admin entry");
+            }
+            catch (Exception ex) 
+            {
+                Log.Information($"Exception hit when verifying admin dashboard tabs...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
     }
 }
