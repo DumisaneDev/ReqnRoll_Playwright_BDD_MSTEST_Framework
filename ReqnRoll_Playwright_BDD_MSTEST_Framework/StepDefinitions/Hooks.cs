@@ -51,6 +51,20 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
             _container = container;
         }
 
+        [BeforeScenario("@cleanup_register_user")]
+        public async Task CleanupRegisterUser()
+        {
+            var testEmail = ConfigReader.getValue("RegisterUserEmail");
+
+            // Database Cleanup
+            var db = new DatabaseRepository();
+            await db.DeleteAsync("Register", $"EmailAddress = '{testEmail}'");
+
+            // Mailsac Cleanup
+            var mailsac = new MailsacClient();
+            await mailsac.DeleteAllMessages(testEmail);
+        }
+
         [BeforeScenario]
         public async Task FirstBeforeScenario()
         {

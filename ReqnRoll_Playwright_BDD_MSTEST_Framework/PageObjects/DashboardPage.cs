@@ -37,6 +37,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         ILocator loc_lnkLogout => _page.Locator("xpath=//a[@href=\"Login.aspx\"]");
 
         //Web Action methods
+        public async Task navigateToPermission(string scenarioTitle) 
+        {
+         await clickElement(loc_lnkPermissions, scenarioTitle);
+        }
+
+        public async Task navigateToAllocationReport(string scenarioTitle) 
+        {
+            await clickElement(loc_lnkReports, scenarioTitle);
+            await clickElement(loc_lnkAllocationReport, scenarioTitle);
+        }
         public async Task isUserOnDashboard(string expectedHeader) 
         {
             await Expect(loc_bnrWelcome).ToBeVisibleAsync();
@@ -46,7 +56,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         public async Task isUserRedirectedToDashboard(string partialURL) 
         {
             // Use a longer timeout and regex to handle variations like Dashboard.aspx or different environments
-            await Expect(_page).ToHaveURLAsync(new System.Text.RegularExpressions.Regex(partialURL), new() { Timeout = 15000 });
+            await Expect(_page).ToHaveURLAsync(new System.Text.RegularExpressions.Regex(partialURL, System.Text.RegularExpressions.RegexOptions.IgnoreCase), new() { Timeout = 15000 });
         }
         public async Task isEmployeeOnDashboard(string dashTabText, 
             string projectTabText,

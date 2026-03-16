@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using System.Threading.Tasks;
 
 namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 {
@@ -18,24 +18,47 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
             _httpClient.DefaultRequestHeaders.Add("Mailsac-Key", ApiKey);
         }
 
-        public async Task<string> GetLatestEmailBody(string email, int timeoutSecounds = 20)
+        public async Task<string> GetLatestEmailBody(string email, int timeoutSeconds = 45)
         {
             var uri = $"https://mailsac.com/api/addresses/{email}/messages";
             var startTime = DateTime.Now;
 
-            while ((DateTime.Now - startTime).TotalSeconds < timeoutSecounds)
+            while ((DateTime.Now - startTime).TotalSeconds < timeoutSeconds)
             { 
                 var response = await _httpClient.GetFromJsonAsync<JsonElement[]>(uri);
 
                 if (response != null && response.Length > 0) 
                 {
+                    // Sort by received date if possible, but usually [0] is latest
                     var latestEmailId = response[0].GetProperty("_id").GetString();
 
+                    // Try to get plain text body for easier regex matching
+                    var bodyResponse = await _httpClient.GetAsync($"https://mailsac.com/api/text/{email}/{latestEmailId}");
+                    if (bodyResponse.IsSuccessStatusCode)
+                    {
+                        return await bodyResponse.Content.ReadAsStringAsync();
+                    }
+                    
+                    // Fallback to original body endpoint
                     return await _httpClient.GetStringAsync($"https://mailsac.com/api/body/{email}/{latestEmailId}");
                 } 
-                await Task.Delay(1000); // Wait for 1 second before checking again
+                await Task.Delay(3000); // Increased delay for stability
             }
-            return null; // Return null if no email is received within the timeout period
+            return null;
+        }
+
+        public async Task DeleteAllMessages(string email)
+        {
+            var uri = $"https://mailsac.com/api/addresses/{email}/messages";
+            var response = await _httpClient.DeleteAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                Log.Information($"Successfully deleted all messages for {email}");
+            }
+            else
+            {
+                Log.Warning($"Failed to delete messages for {email}. Status: {response.StatusCode}");
+            }
         }
     }
 }

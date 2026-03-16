@@ -26,9 +26,8 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
         private static string[] featureTags = new string[] {
-                "all",
-                "smoke",
-                "regression"};
+                "regression",
+                "smoke"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Login Fuctionality for CoreOps Web Application", @"As a Lubanzi Employee,
 I want to securely log in to the CoreOps Employee Management system,
@@ -136,9 +135,8 @@ So i can aceess my admin-privallaged functions to perform my operationals functi
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Successful Login as An Employee User")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successful Login as An Employee User")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Fuctionality for CoreOps Web Application")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         public async global::System.Threading.Tasks.Task SuccessfulLoginAsAnEmployeeUser()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -147,7 +145,7 @@ So i can aceess my admin-privallaged functions to perform my operationals functi
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful Login as An Employee User", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 18
+#line 16
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -157,25 +155,25 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 19
+#line 17
  await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 18
  await testRunner.WhenAsync("I enter a valid email address,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 19
  await testRunner.AndAsync("I enter a valid password,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 22
+#line 20
  await testRunner.AndAsync("I click the login button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 21
  await testRunner.ThenAsync("I should see a url change to contain \"/Dashboard\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 24
+#line 22
  await testRunner.AndAsync("see a welcome message of \"Welcome To Our Dashboard\" on the page.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 23
  await testRunner.AndAsync("see the tabs for for my role \"Dashboard\", \"Project\", \"Employee\", \"Timesheet\", \"Ro" +
                         "om Booking\", \"Permissions\" and Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
@@ -186,9 +184,8 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Successful Login as An Admin User")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Successful Login as An Admin User")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Fuctionality for CoreOps Web Application")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         public async global::System.Threading.Tasks.Task SuccessfulLoginAsAnAdminUser()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -197,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successful Login as An Admin User", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 27
+#line 25
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -207,25 +204,25 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 28
+#line 26
  await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 27
  await testRunner.WhenAsync("I enter a admin email address,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 28
  await testRunner.AndAsync("I enter an admin password,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 29
  await testRunner.AndAsync("I click the login button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 30
  await testRunner.ThenAsync("I should see a url change to contain \"/Dashboard\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 33
+#line 31
  await testRunner.AndAsync("see a welcome message of \"Welcome To Our Dashboard\" on the page.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 34
+#line 32
  await testRunner.AndAsync("see the tabs for for my role DashBoard, Project, Employee, Clients, Timesheet, Ro" +
                         "om Booking, Permissions, Work Allocation, Leave, Report, Logout.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
@@ -236,9 +233,8 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Unsuccessful Login Attempts with Invalid Credentials")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Unsuccessful Login Attempts with Invalid Credentials")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Fuctionality for CoreOps Web Application")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         public async global::System.Threading.Tasks.Task UnsuccessfulLoginAttemptsWithInvalidCredentials()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -247,7 +243,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful Login Attempts with Invalid Credentials", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 37
+#line 35
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -257,40 +253,40 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 38
+#line 36
  await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 39
+#line 37
  await testRunner.WhenAsync("I enter an invalid email address \"whrishchenko8@multiply.com\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 40
+#line 38
  await testRunner.AndAsync("I enter an invalid password \"rR5$WX0<58i\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 41
+#line 39
  await testRunner.AndAsync("I click the login button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 42
+#line 40
  await testRunner.ThenAsync("I should remain on the login page indicated by the url remaining the same,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 43
+#line 41
  await testRunner.AndAsync("I should see a popup message with the message \"Incorrect credentials\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Unsuccessful Login Attempts as any user")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Unsuccessful Login Attempts as any user")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Login Fuctionality for CoreOps Web Application")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("", "rR5$WX0<58i", "Please enter a valid email.", "3", null, DisplayName="Unsuccessful Login Attempts as any user(,rR5$WX0<58i,Please enter a valid email.," +
-            "3)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("", "", "Please enter a valid email.", "4", null, DisplayName="Unsuccessful Login Attempts as any user(,,Please enter a valid email.,4)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("whrishchenko8@multiply.com", "", "Please enter a valid password.", "5", null, DisplayName="Unsuccessful Login Attempts as any user(whrishchenko8@multiply.com,,Please enter " +
-            "a valid password.,5)")]
-        public async global::System.Threading.Tasks.Task UnsuccessfulLoginAttemptsAsAnyUser(string email, string password, string expected_Message, string @__pickleIndex, string[] exampleTags)
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("", "rR5$WX0<58i", "Please enter a valid email.", "3", null, DisplayName="Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.(," +
+            "rR5$WX0<58i,Please enter a valid email.,3)")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("", "", "Please enter a valid email.", "4", null, DisplayName="Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.(," +
+            ",Please enter a valid email.,4)")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("whrishchenko8@multiply.com", "", "Please enter a valid password.", "5", null, DisplayName="Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.(w" +
+            "hrishchenko8@multiply.com,,Please enter a valid password.,5)")]
+        public async global::System.Threading.Tasks.Task UnsuccessfulLoginAttemptsForRemaingingEdgeCasesWithInvalidCredentials_(string email, string password, string expected_Message, string @__pickleIndex, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
@@ -298,10 +294,10 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             argumentsOfScenario.Add("password", password);
             argumentsOfScenario.Add("Expected_message", expected_Message);
             string pickleIndex = @__pickleIndex;
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful Login Attempts as any user", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 46
+#line 43
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -311,22 +307,22 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 47
+#line 44
  await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 48
+#line 45
  await testRunner.WhenAsync(string.Format("I enter an invalid email address \"{0}\",", email), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 49
+#line 46
  await testRunner.AndAsync(string.Format("I enter an invalid password \"{0}\",", password), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 50
+#line 47
  await testRunner.AndAsync("I click the login button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 51
+#line 48
  await testRunner.ThenAsync("I should remain on the login page indicated by the url remaining the same,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 52
+#line 49
  await testRunner.AndAsync(string.Format("I should see an error message or browser alert \"{0}\" detailing the reason for the" +
                             " failed login attempt.", expected_Message), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden

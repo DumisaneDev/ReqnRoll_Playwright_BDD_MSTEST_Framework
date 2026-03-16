@@ -1,9 +1,9 @@
 {
     "TestSetting": {
-        "BaseUrl": "http://coreopsdev.lubanzi.tech/Login",
-        "MailsacApiKey": "k_y32KCu4b3fDDhhvVHsVz8vVUjYwKpHlMd4b",
+        "BaseUrl": "http://coreopsdev.lubanzi.tech",
+        "MailsacApiKey": "k_nRhgX3b3p0lyR00PPsGEw0CVeAxwivZZRWZh4",
         "Headless": false,
-        "Database_Connection_String": "Server=YOUR_SERVER_NAME;Database=YOUR_DATABASE_NAME;User Id=YOUR_USERNAME;Password=YOUR_PASSWORD;TrustServerCertificate=True;",
+        "Database_Connection_String": "Server=102.22.83.108,50849;Database=TimesheetDev;User Id=QlityUser;Password=Lub@anzi001;TrustServerCertificate=True;",
 
         "EmployeeEmail": "employee@mailsac.com",
         "EmpUsername": "phumzilem@lubanzi.tech",

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Playwright.MSTest;
@@ -8,8 +8,8 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
 {
     public class LoginPage : BasePage
     {
-        private readonly Utils.DialogState _dialogState;
-        public LoginPage(IPage page, Utils.DialogState dialogState) : base(page)
+        private readonly DialogState _dialogState;
+        public LoginPage(IPage page, DialogState dialogState) : base(page)
         {
             _dialogState = dialogState;
         }
@@ -54,11 +54,34 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         {
             try
             {
-                await Expect(loc_lblError).ToContainTextAsync(new System.Text.RegularExpressions.Regex(expectedErrorMessage.Trim()));
+                var loc_errors = _page.Locator(".invalid-feedback");
+                
+                // Wait for at least one error message to be visible or wait a bit
+                await _page.WaitForSelectorAsync(".invalid-feedback", new() { State = WaitForSelectorState.Visible, Timeout = 5000 });
+
+                var count = await loc_errors.CountAsync();
+                List<string> visibleErrors = new List<string>();
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (await loc_errors.Nth(i).IsVisibleAsync())
+                    {
+                        var text = await loc_errors.Nth(i).InnerTextAsync();
+                        visibleErrors.Add(text.Trim());
+                        if (text.Contains(expectedErrorMessage, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return; // Found the expected error
+                        }
+                    }
+                }
+
+                // If we reach here, we didn't find the expected error among visible ones
+                string allVisible = string.Join(", ", visibleErrors);
+                throw new Exception($"Expected error '{expectedErrorMessage}' not found among visible errors: '{allVisible}'");
             }
             catch (Exception ex) 
             { 
-             Log.Information($"Exception hit when verifying error message on login page...");
+             Log.Information($"Exception hit when verifying error message on login page: {ex.Message}");
              _errorTranslator.Translate(ex);
             }
         }
