@@ -19,13 +19,50 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         private IPage page;
 
         private static readonly string ResultsPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "TestResults"));
-        private static readonly string ScreenshotsPath = Path.Combine(ResultsPath, "Screenshots");
-        private static readonly string VideosPath = Path.Combine(ResultsPath, "Videos");
+        public static readonly string ScreenshotsPath = Path.Combine(ResultsPath, "Screenshots");
+        //private static readonly string VideosPath = Path.Combine(ResultsPath, "Videos");
         private static readonly string TracesPath = Path.Combine(ResultsPath, "Traces");
+
+        [BeforeTestRun]
+        public static void InitializeLogger()
+        {
+            if (!Directory.Exists(ResultsPath))
+            {
+                Directory.CreateDirectory(ResultsPath);
+            }
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File(Path.Combine(ResultsPath, "Script_logs.txt"), rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            Log.Information("Serilog initialized. Results path: {ResultsPath}", ResultsPath);
+        }
+
+        [AfterTestRun]
+        public static void CloseLogger()
+        {
+            Log.CloseAndFlush();
+        }
 
         public Hooks(IObjectContainer container)
         {
             _container = container;
+        }
+
+        [BeforeScenario("@cleanup_register_user")]
+        public async Task CleanupRegisterUser()
+        {
+            var testEmail = ConfigReader.getValue("RegisterUserEmail");
+
+            // Database Cleanup
+            var db = new DatabaseRepository();
+            await db.DeleteAsync("Register", $"EmailAddress = '{testEmail}'");
+
+            // Mailsac Cleanup
+            var mailsac = new MailsacClient();
+            await mailsac.DeleteAllMessages(testEmail);
         }
 
         [BeforeScenario]
@@ -33,7 +70,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         {
             // Ensure directories exist
             Directory.CreateDirectory(ScreenshotsPath);
-            Directory.CreateDirectory(VideosPath);
+            //Directory.CreateDirectory(VideosPath);
             Directory.CreateDirectory(TracesPath);
 
             Boolean isHeadless = Boolean.Parse(ConfigReader.getValue("Headless"));
@@ -46,7 +83,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
 
             _context = await _browser.NewContextAsync(new BrowserNewContextOptions
             {
-                RecordVideoDir = VideosPath,
+                //RecordVideoDir = VideosPath,
                 ViewportSize = new ViewportSize { Width = 1280, Height = 720 }
             });
 
@@ -71,57 +108,48 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
             _container.RegisterInstanceAs(page);
             _container.RegisterInstanceAs(dialogState);
         }
-
-        [AfterStep]
-        public async Task TakeScreenshotAfterStep(ScenarioContext scenarioContext)
+        public async Task SaveTraceAfterFailedTest(ScenarioContext scenarioContext)
         {
-            if (scenarioContext.TestError != null) // Only take screenshot if the step has failed
+            if (scenarioContext.TestError != null) 
             {
                 string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string traceFileName = $"{scenarioName}_{timestamp}.zip";
+                string traceFilePath = Path.Combine(TracesPath, traceFileName);
 
-                string screenshotFileName = $"{scenarioName}_{timestamp}.png";
-                string screenshotFilePath = Path.Combine(ScreenshotsPath, screenshotFileName);
-                await page.ScreenshotAsync(new PageScreenshotOptions { Path = screenshotFilePath });
-                Console.WriteLine($"Screenshot saved to: {screenshotFilePath}");
+                await _context.Tracing.StopAsync(new TracingStopOptions { Path = traceFilePath });
+                Console.WriteLine($"Trace saved to: {traceFilePath}");
             }
         }
-
-
 
         [AfterScenario]
         public async Task AfterScenario(ScenarioContext scenarioContext)
         {
-            string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string traceFileName = $"{scenarioName}_{timestamp}.zip";
-            string traceFilePath = Path.Combine(TracesPath, traceFileName);
-
-            await _context.Tracing.StopAsync(new TracingStopOptions { Path = traceFilePath });
-            Console.WriteLine($"Trace saved to: {traceFilePath}");
-
+            await SaveTraceAfterFailedTest(scenarioContext);
             await page.CloseAsync();
             await _context.CloseAsync();
-            await HandleVideoName(scenarioContext);
+            //await HandleVideoName(scenarioContext);
             await _browser.CloseAsync();
             _playwright.Dispose();
         }
 
-        public async Task HandleVideoName(ScenarioContext scenarioContext)
-        {
-            string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_[HH-mm-ss]");
-            string videoFileName = $"{scenarioName}_{timestamp}.webm";
-            string videoFilePath = Path.Combine(VideosPath, videoFileName);
+        #region Redundent Code due to framework requirement change - Kept for reference
+        //public async Task HandleVideoName(ScenarioContext scenarioContext)
+        //{
+        //    string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
+        //    string timestamp = DateTime.Now.ToString("yyyyMMdd_[HH-mm-ss]");
+        //    string videoFileName = $"{scenarioName}_{timestamp}.webm";
+        //    string videoFilePath = Path.Combine(VideosPath, videoFileName);
 
-            // Accessing the video from the page context
-            var video = page.Video;
+        //    // Accessing the video from the page context
+        //    var video = page.Video;
 
-            if (video != null)
-            {
-                await video.SaveAsAsync(videoFilePath);
-                Console.WriteLine($"Video saved to: {videoFilePath}");
-            }
-        }
+        //    if (video != null)
+        //    {
+        //        await video.SaveAsAsync(videoFilePath);
+        //        Console.WriteLine($"Video saved to: {videoFilePath}");
+        //    }
+        //}
+        #endregion
     }
 }

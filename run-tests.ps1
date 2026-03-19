@@ -24,14 +24,24 @@ Write-Host "Results Directory: $resultsDir"
 
 if (Test-Path -Path ".\TestResults") {
     Write-Host "Cleaning existing TestResults..." -ForegroundColor Cyan
-    Remove-Item -Path ".\TestResults" -Recurse -Force
+    # Try to remove files and folders individually to handle long paths and locks better
+    Get-ChildItem -Path ".\TestResults" -Recurse | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item -Path ".\TestResults" -Recurse -Force -ErrorAction SilentlyContinue
+    
+    # Wait a moment for OS to release locks
+    Start-Sleep -Milliseconds 500
+    
+    if (Test-Path -Path ".\TestResults") {
+        Write-Host "Manual cleanup failed, trying one more time..." -ForegroundColor Yellow
+        Remove-Item -Path ".\TestResults" -Recurse -Force -ErrorAction SilentlyContinue
+    }
 }
 
 Write-Host "Creating new TestResults directory structure..." -ForegroundColor Cyan
-New-Item -ItemType Directory -Path ".\TestResults"
-New-Item -ItemType Directory -Path ".\TestResults\Screenshots"
-New-Item -ItemType Directory -Path ".\TestResults\Videos"
-New-Item -ItemType Directory -Path ".\TestResults\Traces"
+# Ensure directory is created, use -Force to overwrite if it somehow still exists
+New-Item -ItemType Directory -Path ".\TestResults" -Force | Out-Null
+New-Item -ItemType Directory -Path ".\TestResults\Screenshots" -Force | Out-Null
+New-Item -ItemType Directory -Path ".\TestResults\Traces" -Force | Out-Null
 
 $projectPath = ".\ReqnRoll_Playwright_BDD_MSTEST_Framework\ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj"
 $settingsPath = ".\ReqnRoll_Playwright_BDD_MSTEST_Framework\.runsettings"

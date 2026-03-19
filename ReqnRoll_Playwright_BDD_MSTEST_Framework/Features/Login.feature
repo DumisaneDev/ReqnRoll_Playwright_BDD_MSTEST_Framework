@@ -1,6 +1,4 @@
-@all 
-@smoke
-@regression
+@regression @smoke
 Feature: Login Fuctionality for CoreOps Web Application
 
 As a Lubanzi Employee,
@@ -13,7 +11,7 @@ So i can aceess my admin-privallaged functions to perform my operationals functi
 
 | Users        |
 | Employee     |
-| admin        |
+| Admin        |
 
 Scenario: Successful Login as An Employee User
 	Given I am on the login page of the test system,
@@ -40,10 +38,9 @@ Scenario: Unsuccessful Login Attempts with Invalid Credentials
 	And I enter an invalid password "rR5$WX0<58i",
 	And I click the login button,
 	Then I should remain on the login page indicated by the url remaining the same,
-	And I should see a popup message with the message "Incorrect credentials"
+	And I should see a popup message with the message "Incorrect credentials"  
 
-
-Scenario Outline: Unsuccessful Login Attempts as any user
+Scenario Outline: Unsuccessful Login Attempts For Remainging edge cases with Invalid Credentials.
 	Given I am on the login page of the test system,
 	When I enter an invalid email address "<email>",
 	And I enter an invalid password "<password>",
