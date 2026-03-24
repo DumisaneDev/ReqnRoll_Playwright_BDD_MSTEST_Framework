@@ -6,6 +6,7 @@ Feature: Forgot Password
   Background:
     Given I am on the Forgot Password page
 
+
   Scenario: Successfully requesting a password reset link
     When I enter a registered email "employee@mailsac.com"
     And I click the submit button
@@ -16,6 +17,7 @@ Feature: Forgot Password
     When I enter an unregistered email "unregistered@example.com"
     And I click the submit button
     Then I should see an error message "User with this email does not exist."
+
 
   Scenario: Requesting a password reset link with an invalid email format
     When I enter an invalid email "invalid-email"

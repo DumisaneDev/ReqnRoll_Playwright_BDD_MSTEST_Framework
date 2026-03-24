@@ -25,13 +25,14 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "regression"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Registration Functionality for CoreOps Web Application", "As a prospective Lubanzi Employee,\r\nI want to create a new account in the CoreOps" +
                 " Employee Management system,\r\nSo that I can access the platform and perform my o" +
                 "perational functions.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "Register.feature"
+#line 1 "02_Register.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -119,33 +120,36 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 6
-#line hidden
 #line 7
- await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 8
+ await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 9
  await testRunner.WhenAsync("I click on the Register link,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
         }
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Register.feature.ndjson", 12);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/02_Register.feature.ndjson", 6);
         }
         
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Register successfully as a new user")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Register successfully as a new user")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Registration Functionality for CoreOps Web Application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("cleanup_register_user")]
         public async global::System.Threading.Tasks.Task RegisterSuccessfullyAsANewUser()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "cleanup_register_user"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "0";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Register successfully as a new user", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 10
+#line 12
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -155,56 +159,53 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 11
+#line 13
 await testRunner.GivenAsync("I am on the registration page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 12
-await testRunner.WhenAsync("I enter a valid email address,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 13
-await testRunner.AndAsync("I enter my first name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
 #line 14
-await testRunner.AndAsync("I enter my last name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.WhenAsync("I enter a valid email address in the register page,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 15
-await testRunner.AndAsync("I enter my phone number,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I enter my first name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 16
-await testRunner.AndAsync("I enter my gender,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I enter my last name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 17
-await testRunner.AndAsync("I enter a valid password,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I enter my phone number,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 18
-await testRunner.AndAsync("I click the register button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I enter my gender,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 19
-await testRunner.ThenAsync("I will be redirected to the otp page seeing the Verify OTP button", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+await testRunner.AndAsync("I enter a valid password on the register page,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 20
-await testRunner.AndAsync("I should recieve an email with a unique otp code.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I click the register button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 21
-await testRunner.WhenAsync("on the otp page, i enter my otp code in the OTP code field", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+await testRunner.ThenAsync("I will be redirected to the otp page seeing the Verify OTP button", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 22
-await testRunner.AndAsync("click the verify OTP button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.WhenAsync("on the otp page, i enter my otp code in the OTP code field", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 23
+await testRunner.AndAsync("click the verify OTP button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 24
 await testRunner.ThenAsync("i should see a popup message with the message \"Your account has been created succ" +
                         "essfully. You can now login with your credentials.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 24
-await testRunner.AndAsync("when I click the \"OK\" button on the popup message", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
 #line 25
-await testRunner.AndAsync("I should be redirected to the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+await testRunner.AndAsync("I click the \"OK\" button on the popup message", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 26
+await testRunner.AndAsync("I should be redirected to the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 27
 await testRunner.AndAsync("be able to login with the credentials I used during registration ,seeing the dash" +
                         "board message of \"Welcome To Our Dashboard\" after i login successfully.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
@@ -215,6 +216,7 @@ await testRunner.AndAsync("be able to login with the credentials I used during r
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Unsuccessful registration attempt with an already registered email address")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Unsuccessful registration attempt with an already registered email address")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Registration Functionality for CoreOps Web Application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
         public async global::System.Threading.Tasks.Task UnsuccessfulRegistrationAttemptWithAnAlreadyRegisteredEmailAddress()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -223,7 +225,7 @@ await testRunner.AndAsync("be able to login with the credentials I used during r
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful registration attempt with an already registered email address", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 28
+#line 29
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -233,119 +235,40 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 29
+#line 30
 await testRunner.GivenAsync("I am on the registration page of the test system", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 31
 await testRunner.WhenAsync("I enter a pre-existant email address,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 32
 await testRunner.AndAsync("I enter my first name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 33
 await testRunner.AndAsync("I enter my last name,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 33
+#line 34
 await testRunner.AndAsync("I enter my phone number,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 34
+#line 35
 await testRunner.AndAsync("I enter my gender,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 35
+#line 36
 await testRunner.AndAsync("I enter a valid password,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 37
 await testRunner.AndAsync("I click the register button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 37
+#line 38
 await testRunner.ThenAsync("I should remain on the registration page indicated by the url containing \"/Regist" +
                         "er\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 39
 await testRunner.AndAsync("an error message should be displayed on the page with the message \"Email is alrea" +
                         "dy registered. Please use a different email.\".", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Unsuccessful Registration Attempts with Invalid Data")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Unsuccessful Registration Attempts with Invalid Data")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Registration Functionality for CoreOps Web Application")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("invalid-email", "Bruce", "Wayne", "07300841554", "Male", "wE7?wG8Qh", "Invalid email format", "2", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(invalid-email,Bruce,Wayne,07" +
-            "300841554,Male,wE7?wG8Qh,Invalid email format,2)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("bruce.wayne@mailsac.com", "", "Wayne", "07300841554", "Male", "wE7?wG8Qh", "First name is required", "3", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(bruce.wayne@mailsac.com,,Way" +
-            "ne,07300841554,Male,wE7?wG8Qh,First name is required,3)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("bruce.wayne@mailsac.com", "Bruce", "", "07300841554", "Male", "wE7?wG8Qh", "Last name is required", "4", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(bruce.wayne@mailsac.com,Bruc" +
-            "e,,07300841554,Male,wE7?wG8Qh,Last name is required,4)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("bruce.wayne@mailsac.com", "Bruce", "Wayne", "", "Male", "wE7?wG8Qh", "Phone number is required", "5", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(bruce.wayne@mailsac.com,Bruc" +
-            "e,Wayne,,Male,wE7?wG8Qh,Phone number is required,5)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("bruce.wayne@mailsac.com", "Bruce", "Wayne", "07300841554", "", "wE7?wG8Qh", "Gender selection is required", "6", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(bruce.wayne@mailsac.com,Bruc" +
-            "e,Wayne,07300841554,,wE7?wG8Qh,Gender selection is required,6)")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("bruce.wayne@mailsac.com", "Bruce", "Wayne", "07300841554", "Male", "", "Password is required", "7", null, DisplayName="Unsuccessful Registration Attempts with Invalid Data(bruce.wayne@mailsac.com,Bruc" +
-            "e,Wayne,07300841554,Male,,Password is required,7)")]
-        public async global::System.Threading.Tasks.Task UnsuccessfulRegistrationAttemptsWithInvalidData(string email, string firstName, string lastName, string phoneNumber, string gender, string password, string expected_Message, string @__pickleIndex, string[] exampleTags)
-        {
-            string[] tagsOfScenario = exampleTags;
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("email", email);
-            argumentsOfScenario.Add("firstName", firstName);
-            argumentsOfScenario.Add("lastName", lastName);
-            argumentsOfScenario.Add("phoneNumber", phoneNumber);
-            argumentsOfScenario.Add("gender", gender);
-            argumentsOfScenario.Add("password", password);
-            argumentsOfScenario.Add("Expected_message", expected_Message);
-            string pickleIndex = @__pickleIndex;
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Unsuccessful Registration Attempts with Invalid Data", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 40
-this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 6
-await this.FeatureBackgroundAsync();
-#line hidden
-#line 41
- await testRunner.GivenAsync("I am on the registration page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 42
- await testRunner.WhenAsync(string.Format("I enter an email address \"{0}\",", email), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 43
- await testRunner.AndAsync(string.Format("I enter a first name \"{0}\",", firstName), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 44
- await testRunner.AndAsync(string.Format("I enter a last name \"{0}\",", lastName), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 45
- await testRunner.AndAsync(string.Format("I enter a phone number \"{0}\",", phoneNumber), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 46
- await testRunner.AndAsync(string.Format("I select a gender \"{0}\",", gender), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 47
- await testRunner.AndAsync(string.Format("I enter a password \"{0}\",", password), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 48
- await testRunner.AndAsync("I click the register button,", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 49
- await testRunner.ThenAsync("I should remain on the registration page indicated by the url containing \"/Regist" +
-                        "er\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 50
- await testRunner.AndAsync(string.Format("I should see an error message \"{0}\" detailing the reason for the failed registrat" +
-                            "ion.", expected_Message), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -354,15 +277,16 @@ await this.FeatureBackgroundAsync();
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Verify Password Strength Indicator")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Verify Password Strength Indicator")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Registration Functionality for CoreOps Web Application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
         public async global::System.Threading.Tasks.Task VerifyPasswordStrengthIndicator()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "8";
+            string pickleIndex = "2";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Verify Password Strength Indicator", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 61
+#line 42
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -372,22 +296,22 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 62
+#line 43
  await testRunner.GivenAsync("I am on the registration page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 63
+#line 44
  await testRunner.WhenAsync("I enter a weak password \"123\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 64
+#line 45
  await testRunner.ThenAsync("I should see a password strength message of \"Weak\" on the page,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 65
+#line 46
  await testRunner.WhenAsync("I enter a strong password \"Abc@123456789!\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 66
+#line 47
  await testRunner.ThenAsync("I should see a password strength message of \"Strong\" on the page.", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -397,15 +321,16 @@ await this.FeatureBackgroundAsync();
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Navigate back to Login Page from Registration Page")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Navigate back to Login Page from Registration Page")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Registration Functionality for CoreOps Web Application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
         public async global::System.Threading.Tasks.Task NavigateBackToLoginPageFromRegistrationPage()
         {
             string[] tagsOfScenario = ((string[])(null));
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "9";
+            string pickleIndex = "3";
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Navigate back to Login Page from Registration Page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 68
+#line 49
 this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -415,21 +340,18 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 6
+#line 7
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 69
+#line 50
  await testRunner.GivenAsync("I am on the registration page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 70
+#line 51
  await testRunner.WhenAsync("I click the login link on the registration page,", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 71
+#line 52
  await testRunner.ThenAsync("I should be redirected to the login page indicated by the url containing \"/Login\"" +
                         ",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-#line 72
- await testRunner.AndAsync("I should see the login page header \"Login to your account\".", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

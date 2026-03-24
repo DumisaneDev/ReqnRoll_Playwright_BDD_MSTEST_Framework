@@ -30,7 +30,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Forgot Password", "  As a user who has forgotten their password\r\n  I want to be able to reset my pas" +
                 "sword\r\n  So that I can regain access to my account", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "ForgotPassword.feature"
+#line 1 "04_ForgotPassword.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -127,7 +127,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/ForgotPassword.feature.ndjson", 6);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/04_ForgotPassword.feature.ndjson", 6);
         }
         
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Successfully requesting a password reset link")]
@@ -141,7 +141,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Successfully requesting a password reset link", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 9
+#line 10
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -154,16 +154,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
 #line 6
   await this.FeatureBackgroundAsync();
 #line hidden
-#line 10
+#line 11
     await testRunner.WhenAsync("I enter a registered email \"employee@mailsac.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
     await testRunner.AndAsync("I click the submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 12
+#line 13
     await testRunner.ThenAsync("I should receive a password reset link in my email \"employee@mailsac.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 13
+#line 14
     await testRunner.AndAsync("I should be able to navigate to the reset password page via the link", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -181,7 +181,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Requesting a password reset link with an unregistered email", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 15
+#line 16
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -194,13 +194,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
 #line 6
   await this.FeatureBackgroundAsync();
 #line hidden
-#line 16
+#line 17
     await testRunner.WhenAsync("I enter an unregistered email \"unregistered@example.com\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 18
     await testRunner.AndAsync("I click the submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
     await testRunner.ThenAsync("I should see an error message \"User with this email does not exist.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -218,7 +218,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Requesting a password reset link with an invalid email format", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 20
+#line 22
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -231,13 +231,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
 #line 6
   await this.FeatureBackgroundAsync();
 #line hidden
-#line 21
+#line 23
     await testRunner.WhenAsync("I enter an invalid email \"invalid-email\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 24
     await testRunner.AndAsync("I click the submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 25
     await testRunner.ThenAsync("I should see a validation error \"Please enter a valid email address\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -255,7 +255,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Requesting a password reset link with an empty email field", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 25
+#line 27
   this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -268,10 +268,10 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
 #line 6
   await this.FeatureBackgroundAsync();
 #line hidden
-#line 26
+#line 28
     await testRunner.WhenAsync("I click the submit button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 27
+#line 29
     await testRunner.ThenAsync("I should see a validation error \"Please fill out this field\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

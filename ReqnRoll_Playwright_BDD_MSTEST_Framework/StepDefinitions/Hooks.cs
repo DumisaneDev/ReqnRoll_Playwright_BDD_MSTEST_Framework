@@ -1,11 +1,10 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using Io.Cucumber.Messages.Types;
 using Reqnroll;
 using Reqnroll.BoDi;
-using ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects;
 using ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils;
+using Serilog;
 
 namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
 {
@@ -13,115 +12,115 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
     public class Hooks
     {
         private readonly IObjectContainer _container;
-        private IPlaywright _playwright;
-        private IBrowser _browser;
-        private IBrowserContext _context;
-        private IPage page;
+        private readonly IReqnrollOutputHelper _outputHelper;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly PlaywrightManager _playwrightManager;
 
-        private static readonly string ResultsPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "TestResults"));
-        private static readonly string ScreenshotsPath = Path.Combine(ResultsPath, "Screenshots");
-        private static readonly string VideosPath = Path.Combine(ResultsPath, "Videos");
-        private static readonly string TracesPath = Path.Combine(ResultsPath, "Traces");
+        public static string ScreenshotsPath => PlaywrightManager.ScreenshotsPath;
+        public static string TracesPath => PlaywrightManager.TracesPath;
 
-        public Hooks(IObjectContainer container)
+        public Hooks(IObjectContainer container, IReqnrollOutputHelper outputHelper, ScenarioContext scenarioContext)
         {
             _container = container;
+            _outputHelper = outputHelper;
+            _scenarioContext = scenarioContext;
+            _playwrightManager = new PlaywrightManager();
         }
 
-        [BeforeScenario]
-        public async Task FirstBeforeScenario()
+        #region Test Lifecycle Hooks
+
+        [BeforeTestRun]
+        public static void GlobalSetup()
         {
-            // Ensure directories exist
-            Directory.CreateDirectory(ScreenshotsPath);
-            Directory.CreateDirectory(VideosPath);
-            Directory.CreateDirectory(TracesPath);
-
-            Boolean isHeadless = Boolean.Parse(ConfigReader.getValue("Headless"));
-
-            _playwright = await Playwright.CreateAsync();
-            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
-            {
-                Headless = isHeadless, // Set to true for headless mode
-            });
-
-            _context = await _browser.NewContextAsync(new BrowserNewContextOptions
-            {
-                RecordVideoDir = VideosPath,
-                ViewportSize = new ViewportSize { Width = 1280, Height = 720 }
-            });
-
-            // Start Tracing
-            await _context.Tracing.StartAsync(new TracingStartOptions
-            {
-                Screenshots = true,
-                Snapshots = true,
-                Sources = true
-            });
-
-            page = await _context.NewPageAsync();
-
-            var dialogState = new Utils.DialogState();
-            page.Dialog += async (_, dialog) =>
-            {
-                dialogState.LastMessage = dialog.Message;
-                await dialog.AcceptAsync();
-            };
-
-            // Register instances for Dependency Injection
-            _container.RegisterInstanceAs(page);
-            _container.RegisterInstanceAs(dialogState);
+            LoggerManager.InitializeLogger();
+            WorkerManager.InitializeWorkerPool();
         }
 
-        [AfterStep]
-        public async Task TakeScreenshotAfterStep(ScenarioContext scenarioContext)
+        [AfterTestRun]
+        public static void GlobalTeardown()
         {
-            if (scenarioContext.TestError != null) // Only take screenshot if the step has failed
-            {
-                string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            Log.Information("Generating Worker Summary Report...");
+            ReportManager.GenerateWorkerSummaryReport();
+            LoggerManager.CloseLogger();
+        }
 
-                string screenshotFileName = $"{scenarioName}_{timestamp}.png";
-                string screenshotFilePath = Path.Combine(ScreenshotsPath, screenshotFileName);
-                await page.ScreenshotAsync(new PageScreenshotOptions { Path = screenshotFilePath });
-                Console.WriteLine($"Screenshot saved to: {screenshotFilePath}");
+        #endregion
+
+        #region Scenario Lifecycle Hooks
+
+        [BeforeScenario(Order = 0)]
+        public void SetupWorkerContext()
+        {
+            if (WorkerManager.ShouldLogWorkerCount())
+            {
+                _outputHelper.WriteLine($"Number of Workers Employed = {WorkerManager.TotalWorkersDetected}");
+                _outputHelper.WriteLine("-------------------------------------------");
             }
+
+            WorkerManager.LeaseWorkerId();
+            _outputHelper.WriteLine($"Worker ID: Worker-{WorkerManager.AssignedWorkerId}");
         }
 
+        [BeforeScenario(Order = 1)]
+        public async Task SetupPlaywright()
+        {
+            await _playwrightManager.InitializeAsync();
 
+            _container.RegisterInstanceAs(_playwrightManager.Page);
+            _container.RegisterInstanceAs(_playwrightManager.DialogState);
+        }
 
         [AfterScenario]
-        public async Task AfterScenario(ScenarioContext scenarioContext)
+        public async Task TeardownScenario()
         {
-            string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string traceFileName = $"{scenarioName}_{timestamp}.zip";
-            string traceFilePath = Path.Combine(TracesPath, traceFileName);
+            WorkerManager.IncrementTestCount();
 
-            await _context.Tracing.StopAsync(new TracingStopOptions { Path = traceFilePath });
-            Console.WriteLine($"Trace saved to: {traceFilePath}");
-
-            await page.CloseAsync();
-            await _context.CloseAsync();
-            await HandleVideoName(scenarioContext);
-            await _browser.CloseAsync();
-            _playwright.Dispose();
+            await HandleTracingOnFailure();
+            await _playwrightManager.DisposeAsync();
+            
+            WorkerManager.ReleaseWorkerId();
         }
 
-        public async Task HandleVideoName(ScenarioContext scenarioContext)
+        #endregion
+
+        #region Step Lifecycle Hooks
+
+        [BeforeStep]
+        public void CaptureStepContext()
         {
-            string scenarioName = scenarioContext.ScenarioInfo.Title.Replace(" ", "_");
-            string timestamp = DateTime.Now.ToString("yyyyMMdd_[HH-mm-ss]");
-            string videoFileName = $"{scenarioName}_{timestamp}.webm";
-            string videoFilePath = Path.Combine(VideosPath, videoFileName);
+            ExceptionTranslator.CurrentStep.Value = _scenarioContext.StepContext.StepInfo.Text;
+        }
 
-            // Accessing the video from the page context
-            var video = page.Video;
+        #endregion
 
-            if (video != null)
+        #region Tagged Hooks
+
+        [BeforeScenario("@cleanup_register_user")]
+        public async Task CleanupRegisterUserData()
+        {
+            var testEmail = ConfigReader.getValue("RegisterUserEmail");
+
+            // Database Cleanup
+            var db = new DatabaseRepository();
+            await db.DeleteAsync("Register", $"EmailAddress = '{testEmail}'");
+
+            // Mailsac Cleanup
+            var mailsac = new MailsacClient();
+            await mailsac.DeleteAllMessages(testEmail);
+        }
+
+        #endregion
+
+        #region Private Helper Methods
+
+        private async Task HandleTracingOnFailure()
+        {
+            if (_scenarioContext.TestError != null)
             {
-                await video.SaveAsAsync(videoFilePath);
-                Console.WriteLine($"Video saved to: {videoFilePath}");
+                await _playwrightManager.SaveTraceOnFailureAsync(_scenarioContext.ScenarioInfo.Title);
             }
         }
+
+        #endregion
     }
 }
