@@ -64,36 +64,61 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         // Validation Methods
         public async Task verifyTableSorted(string columnName, string order)
         {
-            bool descending = order.Equals("descending", StringComparison.OrdinalIgnoreCase) || order.Equals("reverse", StringComparison.OrdinalIgnoreCase);
-            string targetColumn = columnName.Equals("Name", StringComparison.OrdinalIgnoreCase) ? "First Name" : columnName;
-            
-            bool isSorted = await IsTableSortedAsync(loc_tblEmployees, targetColumn, descending);
-            Assert.IsTrue(isSorted, $"Table should be sorted by {columnName} in {order} order.");
+            try
+            {
+                bool descending = order.Equals("descending", StringComparison.OrdinalIgnoreCase) || order.Equals("reverse", StringComparison.OrdinalIgnoreCase);
+                string targetColumn = columnName.Equals("Name", StringComparison.OrdinalIgnoreCase) ? "First Name" : columnName;
+
+                bool isSorted = await IsTableSortedAsync(loc_tblEmployees, targetColumn, descending);
+                Assert.IsTrue(isSorted, $"Table should be sorted by {columnName} in {order} order.");
+            }
+            catch (Exception ex) 
+            {
+                Log.Error($"Failure with verifying table sorting functionality...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
 
         public async Task verifyEmployeeVisible(string employeeName)
         {
-            var parts = employeeName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            ILocator cell;
-            if (parts.Length >= 2)
+            try
             {
-                cell = _page.Locator($"xpath=//table[contains(@class, 'datatables')]//tr[td[contains(., '{parts[0]}')] and td[contains(., '{parts[1]}')]]").First;
+                var parts = employeeName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                ILocator cell;
+                if (parts.Length >= 2)
+                {
+                    cell = _page.Locator($"xpath=//table[contains(@class, 'datatables')]//tr[td[contains(., '{parts[0]}')] and td[contains(., '{parts[1]}')]]").First;
+                }
+                else
+                {
+                    cell = _page.Locator($"xpath=//table[contains(@class, 'datatables')]//td[contains(., '{employeeName}')]").First;
+                }
+                await Expect(cell).ToBeVisibleAsync();
             }
-            else
+            catch (Exception ex) 
             {
-                cell = _page.Locator($"xpath=//table[contains(@class, 'datatables')]//td[contains(., '{employeeName}')]").First;
+                Log.Error($"Failure Verifying employee visibility...{ex.Message}");
+                _errorTranslator.Translate(ex);
             }
-            await Expect(cell).ToBeVisibleAsync();
+
         }
 
         public async Task verifyTabVisibility(string tabName, bool visible)
         {
-            // Sidebar tabs check - matching by text content precisely
-            var tab = _page.Locator($"xpath=//div[contains(@class, 'menu-item')]//a[normalize-space()='{tabName}' or contains(., '{tabName}')]");
-            if (visible)
-                await Expect(tab.First).ToBeVisibleAsync();
-            else
-                await Expect(tab.First).ToBeHiddenAsync();
+            try
+            {
+                // Sidebar tabs check - matching by text content precisely
+                var tab = _page.Locator($"xpath=//div[contains(@class, 'menu-item')]//a[normalize-space()='{tabName}' or contains(., '{tabName}')]");
+                if (visible)
+                    await Expect(tab.First).ToBeVisibleAsync();
+                else
+                    await Expect(tab.First).ToBeHiddenAsync();
+            }
+            catch(Exception ex) 
+            {
+                Log.Error($"Failure validating Tab Visibility...{ex.Message}");
+                _errorTranslator.Translate(ex); ;
+            }
         }
     }
 }

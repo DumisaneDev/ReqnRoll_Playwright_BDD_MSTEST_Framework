@@ -23,7 +23,6 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         private ILocator loc_h3PageHeader => _page.Locator("h3");
         private ILocator loc_lblError => _page.Locator(".invalid-feedback").First;
 
-        //Web Action methods
         public async Task navigateTo(string testURL, string scenarioTitle) => await goToPage(testURL, scenarioTitle);
        
         public async Task navigatetoRegisterPage(string scenarioTitle) => await clickElement(loc_lnkRegister, scenarioTitle);

@@ -32,7 +32,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
                 "ops web application,\r\nSo that i can easily assign and revoke permission to users" +
                 " based on their roles and responsibilities.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "Permissions.feature"
+#line 1 "03_Permissions.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -142,7 +142,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Permissions.feature.ndjson", 10);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/03_Permissions.feature.ndjson", 10);
         }
         
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can search for an employee in the employee navigation table")]
@@ -174,10 +174,10 @@ await this.FeatureBackgroundAsync();
  await testRunner.GivenAsync("I click on the \"Permissions\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 17
- await testRunner.WhenAsync("I search for an employee named \"Bruce Wayne\" in the employee table", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.WhenAsync("I search for an employee named \"User Employee\" in the employee table", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 18
- await testRunner.ThenAsync("the employee \"Bruce Wayne\" should be visible in the search results", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync("the employee \"User Employee\" should be visible in the search results", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

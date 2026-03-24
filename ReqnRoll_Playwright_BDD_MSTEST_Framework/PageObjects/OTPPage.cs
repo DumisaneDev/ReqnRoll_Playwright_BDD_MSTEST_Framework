@@ -44,7 +44,17 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         public async Task handleSucessPopup(string expectedPopupText, string btnName) => await handlePopupModel(loc_mdlSucessPopup, expectedPopupText, btnName);
 
         public async Task clickLoginLink(string scenarioTitle) => await clickElement(loc_lnkLogin, scenarioTitle);
-        public async Task verifyIncorrectOTPEntry(string expectedMsg) =>  await Expect(loc_lblInvalidOTPError).ToHaveTextAsync(expectedMsg);
+        public async Task verifyIncorrectOTPEntry(string expectedMsg)
+        {
+            try
+            {
+                await Expect(loc_lblInvalidOTPError).ToHaveTextAsync(expectedMsg);
+            }
+            catch (Exception ex) 
+            {
+                _errorTranslator.Translate(ex);
+            }
+        }
 
         //Assertion Methods
         public async Task isUserOnOTPPage(string scenarioTitle, string expectedbtnText) 
@@ -64,7 +74,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             {
                 Log.Information($"Issue Validating OTP Navigation...{e.Message}");
                 await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, "Failure_to_navigate_to_OTP_Page");
-                throw; // Re-throw to fail the step
+                _errorTranslator.Translate(e);
             }
         }
     }

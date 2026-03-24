@@ -12,11 +12,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
         public DatabaseRepository()
         {
             _connectionString = ConfigReader.getValue("Database_Connection_String");
+            #region error_handling
             if (string.IsNullOrEmpty(_connectionString) || _connectionString.Contains("YOUR_SERVER_NAME"))
             {
                 // Note: In a real scenario, we might want to log a warning or throw a more specific exception.
                 // For testing purposes, we ensure the connection string is valid before proceeding.
             }
+            #endregion
         }
 
         private DbContext CreateContext()

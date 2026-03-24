@@ -444,7 +444,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
         [Then("I should see a password strength message of {string} on the page.")]
         public async Task ThenIShouldSeeAPasswordStrengthMessageOfOnThePage(string strength)
         {
-           await _registerPage.validatePasswordStrength(strength);
+           await _registerPage.validatePasswordStrength(strength, _scenarioContext);
         }
 
         [When("I enter a strong password {string},")]

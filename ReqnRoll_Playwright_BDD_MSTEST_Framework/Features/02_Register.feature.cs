@@ -32,7 +32,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
                 " Employee Management system,\r\nSo that I can access the platform and perform my o" +
                 "perational functions.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
-#line 1 "Register.feature"
+#line 1 "02_Register.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -132,7 +132,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Register.feature.ndjson", 6);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/02_Register.feature.ndjson", 6);
         }
         
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Register successfully as a new user")]

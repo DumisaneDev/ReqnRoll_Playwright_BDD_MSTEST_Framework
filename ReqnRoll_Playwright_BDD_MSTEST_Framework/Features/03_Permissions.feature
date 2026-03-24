@@ -14,8 +14,8 @@ Background:
 
 Scenario: Admin can search for an employee in the employee navigation table
 	Given I click on the "Permissions" tab
-	When I search for an employee named "Bruce Wayne" in the employee table
-	Then the employee "Bruce Wayne" should be visible in the search results
+	When I search for an employee named "User Employee" in the employee table
+	Then the employee "User Employee" should be visible in the search results
 
 Scenario: Admin can sort the employee table by name
 	Given I click on the "Permissions" tab

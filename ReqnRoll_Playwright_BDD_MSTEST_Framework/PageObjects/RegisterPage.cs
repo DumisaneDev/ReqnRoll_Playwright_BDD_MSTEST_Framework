@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Playwright.MSTest;
 using static Microsoft.Playwright.Assertions;
 using ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils;
+using ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions;
 
 namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
 {
@@ -78,8 +79,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
 
         public async Task verifySuccessModal(string expectedMessage)
         {
-            await Expect(loc_mdlSuccess).ToBeVisibleAsync();
-            await Expect(loc_mdlSuccess).ToContainTextAsync(expectedMessage);
+            try
+            {
+                await Expect(loc_mdlSuccess).ToBeVisibleAsync();
+                await Expect(loc_mdlSuccess).ToContainTextAsync(expectedMessage);
+            }
+            catch (Exception ex) 
+            {
+                Log.Error($"Failure verifying success model on the register page...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
 
         public async Task clickSuccessOk(string scenarioTitle)
@@ -89,14 +98,23 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
 
         public async Task disableHtml5Validation()
         {
-            await _page.EvaluateAsync("document.querySelectorAll('form').forEach(f => f.setAttribute('novalidate', 'novalidate'))");
+            
+                await _page.EvaluateAsync("document.querySelectorAll('form').forEach(f => f.setAttribute('novalidate', 'novalidate'))");
         }
 
         public async Task isUserOnRegisterPage(string expectedHeaderText, string expectedUrl, string expectedBtnText)
         {
-            await Expect(loc_h3PageHeader).ToHaveTextAsync(new System.Text.RegularExpressions.Regex(expectedHeaderText, System.Text.RegularExpressions.RegexOptions.IgnoreCase));
-            await Expect(_page).ToHaveURLAsync(new System.Text.RegularExpressions.Regex(expectedUrl, System.Text.RegularExpressions.RegexOptions.IgnoreCase));
-            await Expect(loc_btnRegister).ToHaveValueAsync(expectedBtnText);
+            try
+            {
+                await Expect(loc_h3PageHeader).ToHaveTextAsync(new System.Text.RegularExpressions.Regex(expectedHeaderText, System.Text.RegularExpressions.RegexOptions.IgnoreCase));
+                await Expect(_page).ToHaveURLAsync(new System.Text.RegularExpressions.Regex(expectedUrl, System.Text.RegularExpressions.RegexOptions.IgnoreCase));
+                await Expect(loc_btnRegister).ToHaveValueAsync(expectedBtnText);
+            }
+            catch (Exception ex) 
+            {
+                Log.Error($"Failure when verify User entry into the register page...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
         public async Task HandleInvalidAlert(string expectedMessage)
         {
@@ -168,7 +186,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             await Expect(loc_msgRegisteredUserError).ToHaveTextAsync(new System.Text.RegularExpressions.Regex(expectedMsg, System.Text.RegularExpressions.RegexOptions.IgnoreCase), new() { Timeout = 1000 });
         }
 
-        public async Task validatePasswordStrength(string expectedPasswordStrength) 
+        public async Task validatePasswordStrength(string expectedPasswordStrength, ScenarioContext scenarioContext) 
         {
             try
             {
@@ -178,6 +196,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             catch (Exception ex) 
             {
                 Log.Information($"Issue when validating password strength...{ex.Message}");
+                await _screenshotManager.captureScreenshot(scenarioContext.ScenarioInfo.Title, Hooks.ScreenshotsPath, "Verifying_Password_strength_indicator");
                 _errorTranslator.Translate(ex);
             }
         }

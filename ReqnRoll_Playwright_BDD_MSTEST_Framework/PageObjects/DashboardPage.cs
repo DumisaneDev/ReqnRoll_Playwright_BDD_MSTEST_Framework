@@ -49,8 +49,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         }
         public async Task isUserOnDashboard(string expectedHeader) 
         {
-            await Expect(loc_bnrWelcome).ToBeVisibleAsync();
-            await Expect(loc_bnrWelcome).ToHaveTextAsync(expectedHeader);
+            try
+            {
+                await Expect(loc_bnrWelcome).ToBeVisibleAsync();
+                await Expect(loc_bnrWelcome).ToHaveTextAsync(expectedHeader);
+            }
+            catch (Exception ex) 
+            {
+                Log.Error($"Failure verifying if User is on the dashboard...{ex.Message}");
+                _errorTranslator.Translate(ex);
+            }
         }
 
         public async Task isUserRedirectedToDashboard(string partialURL) 

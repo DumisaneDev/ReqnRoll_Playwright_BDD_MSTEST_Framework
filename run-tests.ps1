@@ -55,9 +55,11 @@ if ($ShowOutput) {
 
 if ($Parallel) {
     Write-Host "Executing in Parallel with $Workers workers..." -ForegroundColor Green
+    $env:TEST_WORKERS = $Workers
     $command += " -- MSTest.Parallelize.Workers=$Workers MSTest.Parallelize.Scope=MethodLevel"
 } else {
     Write-Host "Executing Sequentially (1 worker)..." -ForegroundColor Yellow
+    $env:TEST_WORKERS = 1
     $command += " -- MSTest.Parallelize.Workers=1 MSTest.Parallelize.Scope=MethodLevel"
 }
 

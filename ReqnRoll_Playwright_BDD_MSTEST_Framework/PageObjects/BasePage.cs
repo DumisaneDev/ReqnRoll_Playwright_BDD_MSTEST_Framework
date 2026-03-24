@@ -102,7 +102,6 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             try
             {
                 await Expect(locator).ToBeVisibleAsync();
-                // Get text or title/aria-label for a better description
                 string elementText = await locator.InnerTextAsync();
                 if (string.IsNullOrWhiteSpace(elementText)) elementText = await locator.GetAttributeAsync("value");
                 if (string.IsNullOrWhiteSpace(elementText)) elementText = await locator.GetAttributeAsync("aria-label");
@@ -114,6 +113,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             catch (Exception ex)
             {
                 Log.Information($"Exception hit when clicking element...{ex.Message}");
+                await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, $"Error_Clicking_{locator.InnerTextAsync()}");
                 _errorTranslator.Translate(ex);
             }
         }

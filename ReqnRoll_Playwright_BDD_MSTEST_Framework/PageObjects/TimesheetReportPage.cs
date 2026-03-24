@@ -29,8 +29,8 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
 
         public async Task navigateToTimesheetReport(string scenarioTitle)
         {
-            await clickElement(loc_lnkReports, scenarioTitle);
-            await clickElement(loc_lnkTimesheetReport, scenarioTitle);
+                await clickElement(loc_lnkReports, scenarioTitle);
+                await clickElement(loc_lnkTimesheetReport, scenarioTitle);
         }
 
         public async Task selectEmployee(string employeeName, string scenarioTitle)
@@ -52,7 +52,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             });
 
             Log.Information($"Report downloaded: {download.SuggestedFilename}");
-            
+
             // Optionally save it
             string downloadPath = Path.Combine(Hooks.ScreenshotsPath, "..", "Downloads");
             Directory.CreateDirectory(downloadPath);
@@ -69,5 +69,6 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             await Expect(loc_h1PageHeader).ToBeVisibleAsync();
             await Expect(loc_h1PageHeader).ToHaveTextAsync(expectedHeader);
         }
+
     }
 }
