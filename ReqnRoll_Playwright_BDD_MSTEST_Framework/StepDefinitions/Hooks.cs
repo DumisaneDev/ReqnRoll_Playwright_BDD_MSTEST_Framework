@@ -120,7 +120,6 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.StepDefinitions
                 await _playwrightManager.SaveTraceOnFailureAsync(_scenarioContext.ScenarioInfo.Title);
             }
         }
-
         #endregion
     }
 }

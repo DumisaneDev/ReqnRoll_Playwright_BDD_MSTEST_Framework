@@ -63,24 +63,42 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             await clickElement(loc_btnBack, scenarioTitle);
         }
 
-        public async Task verifyNoAllocationAlert(string expectedMessage)
+        public async Task verifyNoAllocationAlert(string expectedMessage, string scenarioTitle)
         {
-            // Give some time for the alert to be captured
-            for (int i = 0; i < 5; i++)
+            try
             {
-                if (!string.IsNullOrEmpty(_dialogState.LastMessage))
-                    break;
-                await Task.Delay(500);
+                // Give some time for the alert to be captured
+                for (int i = 0; i < 5; i++)
+                {
+                    if (!string.IsNullOrEmpty(_dialogState.LastMessage))
+                        break;
+                    await Task.Delay(500);
+                }
+
+                Assert.AreEqual(expectedMessage, _dialogState.LastMessage, "The alert message did not match the expected message.");
             }
-
-            Assert.AreEqual(expectedMessage, _dialogState.LastMessage, "The alert message did not match the expected message.");
+            catch (Exception ex)
+            {
+                Log.Information($"Failure Verifying No Allocation Browser Alert...{ex.Message}");
+                await _screenshotManager.captureScreenshot(scenarioTitle, _screenshotPath, "Failure_Verifing_No_Allocation_Alert");
+                _errorTranslator.Translate(ex);
+            }
         }
 
-        public async Task isUserOnAllocationReportPage(string expectedHeader)
+        public async Task isUserOnAllocationReportPage(string expectedHeader, string scenarioTitle)
         {
-            await Expect(loc_h1PageHeader).ToBeVisibleAsync();
-            await Expect(loc_h1PageHeader).ToHaveTextAsync(expectedHeader);
+            try
+            {
+                await Expect(loc_h1PageHeader).ToBeVisibleAsync();
+                await Expect(loc_h1PageHeader).ToHaveTextAsync(expectedHeader);
+            }
+            catch (Exception ex)
+            {
+                Log.Information($"Failure Verifying Allocation Report Navigation...{ex.Message}");
+                await _screenshotManager.captureScreenshot(scenarioTitle, _screenshotPath, "Failure_Navigating_to_Allocation_report_page");
+                _errorTranslator.Translate(ex);
+            }
         }
-
     }
+
 }

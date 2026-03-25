@@ -35,11 +35,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         ILocator loc_lnkReports => _page.GetByRole(AriaRole.Link, new() { Name = "Report" });
         ILocator loc_lnkAllocationReport => _page.Locator("xpath=//a[@href=\"AllocationReport.aspx\"]");
         ILocator loc_lnkLogout => _page.Locator("xpath=//a[@href=\"Login.aspx\"]");
+        private ILocator loc_lnkTimesheetReport => _page.Locator("xpath=//a[@href='REPORTS.aspx']");
 
         //Web Action methods
         public async Task navigateToPermission(string scenarioTitle) 
         {
-         await clickElement(loc_lnkPermissions, scenarioTitle);
+            await clickElement(loc_lnkReports, scenarioTitle);
+            await clickElement(loc_lnkPermissions, scenarioTitle);
         }
 
         public async Task navigateToAllocationReport(string scenarioTitle) 
@@ -47,6 +49,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             await clickElement(loc_lnkReports, scenarioTitle);
             await clickElement(loc_lnkAllocationReport, scenarioTitle);
         }
+
+        public async Task navigateToTimesheetReport(string scenarioTitle)
+        {
+            await clickElement(loc_lnkReports, scenarioTitle);
+            await clickElement(loc_lnkTimesheetReport, scenarioTitle);
+        }
+
         public async Task isUserOnDashboard(string expectedHeader) 
         {
             try

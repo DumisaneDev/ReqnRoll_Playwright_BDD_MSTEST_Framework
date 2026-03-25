@@ -78,16 +78,31 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
             try
             {
                 await Expect(locator).ToBeVisibleAsync();
-                string elementText = await locator.InnerTextAsync();
-                if (string.IsNullOrWhiteSpace(elementText)) elementText = "dropdown";
+                
+                // Get a friendly name for the dropdown for logging
+                string dropdownName = await locator.GetAttributeAsync("id") ?? await locator.GetAttributeAsync("name") ?? "dropdown";
 
                 if (!string.IsNullOrEmpty(valueToSelect))
                 {
+                    // Select by label (visible text)
                     await locator.SelectOptionAsync(new SelectOptionValue { Label = valueToSelect });
-                    await Expect(locator).ToHaveValueAsync(valueToSelect);
+                    
+                    // Verify the selection by checking the selected option's label
+                    // This avoids failures when the 'value' attribute is an internal ID (e.g., "4361")
+                    var selectedLabel = await locator.EvaluateAsync<string>("el => el.options[el.selectedIndex].text");
+                    
+                    if (!selectedLabel.Trim().Equals(valueToSelect.Trim(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Fallback: check if the input value matches (in case valueToSelect was actually an ID)
+                        var selectedValue = await locator.InputValueAsync();
+                        if (!selectedValue.Equals(valueToSelect))
+                        {
+                            throw new Exception($"Dropdown selection failed. Expected '{valueToSelect}' but found label '{selectedLabel}' and value '{selectedValue}'");
+                        }
+                    }
                 }
                 
-                await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, $"Selecting_{valueToSelect}_in_{elementText}");
+                await _screenshotManager.captureScreenshot(scenarioTitle, Hooks.ScreenshotsPath, $"Selecting_{valueToSelect}_in_{dropdownName}");
             }
             catch (Exception ex)
             {

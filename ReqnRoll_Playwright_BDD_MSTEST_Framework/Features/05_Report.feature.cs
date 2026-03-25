@@ -25,7 +25,8 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         private Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _testContext;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "all"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Report feature for the coreops web application", "As An Admin User,\r\nI want to be able to download and view timesheet and allocatio" +
                 "n reports \r\nSo that I can track employee work and project allocations.", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
@@ -118,37 +119,51 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
         
         public virtual async global::System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 7
-  #line hidden
 #line 8
-    await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 9
-    await testRunner.WhenAsync("I login to the test site as an admin user.", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.GivenAsync("I am on the login page of the test system,", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 10
-    await testRunner.ThenAsync("I should see a url change to contain \"dashboard\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.WhenAsync("I login to the test site as an admin user.", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 11
+ await testRunner.ThenAsync("I should see a url change to contain \"dashboard\",", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
         }
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/05_Report.feature.ndjson", 7);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/05_Report.feature.ndjson", 9);
         }
         
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can generate a Timesheet Report for an employee")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin can generate a Timesheet Report for an employee")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Generate Timesheet Report successfully")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Generate Timesheet Report successfully")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
-        public async global::System.Threading.Tasks.Task AdminCanGenerateATimesheetReportForAnEmployee()
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("smoke")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("Bruce Wayne", "November", "0", null, DisplayName="Generate Timesheet Report successfully(Bruce Wayne,November,0)")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DataRowAttribute("Potent Serum", "March", "1", null, DisplayName="Generate Timesheet Report successfully(Potent Serum,March,1)")]
+        public async global::System.Threading.Tasks.Task GenerateTimesheetReportSuccessfully(string employeeName, string month, string @__pickleIndex, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] @__tags = new string[] {
+                    "smoke",
+                    "regression"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "0";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin can generate a Timesheet Report for an employee", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            argumentsOfScenario.Add("EmployeeName", employeeName);
+            argumentsOfScenario.Add("Month", month);
+            string pickleIndex = @__pickleIndex;
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Generate Timesheet Report successfully", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 12
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 14
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -157,93 +172,48 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
-  await this.FeatureBackgroundAsync();
-#line hidden
-#line 13
-    await testRunner.GivenAsync("I click on the \"Report\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 14
-    await testRunner.AndAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 8
+await this.FeatureBackgroundAsync();
 #line hidden
 #line 15
-    await testRunner.WhenAsync("I select the employee \"Bruce Wayne\" from the dropdown", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.GivenAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 16
-    await testRunner.AndAsync("I select the month \"November\" from the dropdown", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.WhenAsync(string.Format("I select an employee \"{0}\" from the dropdown", employeeName), ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 17
-    await testRunner.AndAsync("I click the \"Generate report\" button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("I select a month \"{0}\" from the dropdown", month), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 18
-    await testRunner.ThenAsync("a timesheet report for \"Bruce Wayne\" should be downloaded", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.AndAsync("I click the \"Generate Report\" button.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 19
-    await testRunner.AndAsync("the report should contain a graph showing work performance", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.ThenAsync("a file download should be triggered", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 20
+ await testRunner.AndAsync("the report must include work hours summary, project-wise allocation, overtime, an" +
+                        "d attendance tracking", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can generate an Allocation Report for an employee")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin can generate an Allocation Report for an employee")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Generate Work Allocation Report successfully")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Generate Work Allocation Report successfully")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
-        public async global::System.Threading.Tasks.Task AdminCanGenerateAnAllocationReportForAnEmployee()
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        public async global::System.Threading.Tasks.Task GenerateWorkAllocationReportSuccessfully()
         {
-            string[] tagsOfScenario = ((string[])(null));
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "1";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin can generate an Allocation Report for an employee", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
-            string[] tagsOfRule = ((string[])(null));
-            global::Reqnroll.RuleInfo ruleInfo = null;
-#line 22
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                await testRunner.SkipScenarioAsync();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 7
-  await this.FeatureBackgroundAsync();
-#line hidden
-#line 23
-    await testRunner.GivenAsync("I click on the \"Report\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 24
-    await testRunner.AndAsync("I navigate to the \"Allocation Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 25
-    await testRunner.WhenAsync("I select the employee \"Potent Serum\" from the dropdown", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 26
-    await testRunner.AndAsync("I select a start date \"2025-11-11\" and end date \"2025-11-28\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 27
-    await testRunner.AndAsync("I click the \"Generate report\" button", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 28
-    await testRunner.ThenAsync("an allocation report for \"Potent Serum\" should be downloaded", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can navigate back to dashboard from Report page")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin can navigate back to dashboard from Report page")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
-        public async global::System.Threading.Tasks.Task AdminCanNavigateBackToDashboardFromReportPage()
-        {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "2";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin can navigate back to dashboard from Report page", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Generate Work Allocation Report successfully", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 31
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 28
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -252,41 +222,50 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
-  await this.FeatureBackgroundAsync();
+#line 8
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 29
+ await testRunner.GivenAsync("I navigate to the \"Work Allocation Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 30
+ await testRunner.WhenAsync("I select an employee \"Bruce Wayne\" from the dropdown", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 31
+ await testRunner.AndAsync("I select a valid \"Start Date\" as \"2025-11-11\" and \"End Date\" as \"2025-11-28\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 32
-    await testRunner.GivenAsync("I click on the \"Report\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.AndAsync("I click the \"Generate Report\" button.", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 33
-    await testRunner.AndAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.ThenAsync("a report showing capacity utilization and allocation percentages should be genera" +
+                        "ted", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 34
-    await testRunner.WhenAsync("I click the \"Back\" button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 35
-    await testRunner.ThenAsync("I should be redirected to the \"dashboard\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.AndAsync("I should see \"Over-allocation alerts\" if the employee exceeds 100% capacity", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can see an error message when generating a Timesheet report with missing re" +
-            "quired fields")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin can see an error message when generating a Timesheet report with missing re" +
-            "quired fields")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Navigate back to the dashboard from Timesheet Report")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Navigate back to the dashboard from Timesheet Report")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
-        public async global::System.Threading.Tasks.Task AdminCanSeeAnErrorMessageWhenGeneratingATimesheetReportWithMissingRequiredFields()
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("cleanup_register_user")]
+        public async global::System.Threading.Tasks.Task NavigateBackToTheDashboardFromTimesheetReport()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression",
+                    "cleanup_register_user"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
             string pickleIndex = "3";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin can see an error message when generating a Timesheet report with missing re" +
-                    "quired fields", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Navigate back to the dashboard from Timesheet Report", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 38
-   this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 37
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -295,19 +274,96 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
-  await this.FeatureBackgroundAsync();
+#line 8
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 38
+ await testRunner.GivenAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 39
-    await testRunner.GivenAsync("I click on the \"Report\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+ await testRunner.WhenAsync("I click the \"Back\" button.", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 40
-    await testRunner.AndAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.ThenAsync("I should be redirected to the \"Dashboard\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 41
-    await testRunner.WhenAsync("I click the \"Generate report\" button without selecting an employee or month", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Navigate back to the dashboard from Allocation Report")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Navigate back to the dashboard from Allocation Report")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        public async global::System.Threading.Tasks.Task NavigateBackToTheDashboardFromAllocationReport()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "4";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Navigate back to the dashboard from Allocation Report", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 43
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
-#line 42
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 8
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 44
+ await testRunner.GivenAsync("I navigate to the \"Work Allocation Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 45
+ await testRunner.WhenAsync("I click the \"Back\" button.", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 46
+ await testRunner.ThenAsync("I should be redirected to the \"Dashboard\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Validate error message for Timesheet Report when required fields are empty")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Validate error message for Timesheet Report when required fields are empty")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        public async global::System.Threading.Tasks.Task ValidateErrorMessageForTimesheetReportWhenRequiredFieldsAreEmpty()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "regression"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "5";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Validate error message for Timesheet Report when required fields are empty", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 49
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 8
+await this.FeatureBackgroundAsync();
+#line hidden
+#line 50
+ await testRunner.GivenAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 51
+ await testRunner.WhenAsync("I click the \"Generate Report\" button without selecting an employee or month", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 52
  await testRunner.ThenAsync("I should see an error message \"Please enter an employee or month for the desired " +
                         "report\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
@@ -315,22 +371,22 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Admin can see an error message when generating a Allocation report with missing r" +
-            "equired fields")]
-        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Admin can see an error message when generating a Allocation report with missing r" +
-            "equired fields")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute("Validate error message for Allocation Report when required fields are empty")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Validate error message for Allocation Report when required fields are empty")]
         [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Report feature for the coreops web application")]
-        public async global::System.Threading.Tasks.Task AdminCanSeeAnErrorMessageWhenGeneratingAAllocationReportWithMissingRequiredFields()
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("all")]
+        [global::Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("regression")]
+        public async global::System.Threading.Tasks.Task ValidateErrorMessageForAllocationReportWhenRequiredFieldsAreEmpty()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "regression"};
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            string pickleIndex = "4";
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Admin can see an error message when generating a Allocation report with missing r" +
-                    "equired fields", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string pickleIndex = "6";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Validate error message for Allocation Report when required fields are empty", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
             string[] tagsOfRule = ((string[])(null));
             global::Reqnroll.RuleInfo ruleInfo = null;
-#line 44
-  this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line 55
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -339,19 +395,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
-  await this.FeatureBackgroundAsync();
+#line 8
+await this.FeatureBackgroundAsync();
 #line hidden
-#line 45
-    await testRunner.GivenAsync("I click on the \"Report\" tab", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line 56
+ await testRunner.GivenAsync("I navigate to the \"Work Allocation Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 46
-    await testRunner.AndAsync("I navigate to the \"Timesheet Report\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 57
+ await testRunner.WhenAsync("I click the \"Generate Report\" button without selecting an employee or date range", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 47
-    await testRunner.WhenAsync("I click the \"Generate report\" button without selecting an employee or month", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 48
+#line 58
  await testRunner.ThenAsync("I should see an error message \"Please select an employee and start-end dates.\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }

@@ -38,7 +38,8 @@ After a test run, navigate to the `TestResults` folder:
 
 * **HTML Living Doc:** Open `LivingDoc.html`. This is your main dashboard showing green (passed) and red (failed) results.
 * **Screenshots:** Found in `TestResults/Screenshots`. These show exactly what the app looked like at the moment of failure.
-* **Videos & Traces:** Found in `TestResults/Videos`. You can watch a recording of the test to see exactly how it behaved.
+* **Traces:** Found in `TestResults/Traces`. You can get a full snapshot (play-by-play) of the test to see exactly how it behaved on test execution failure.
+* **Workers HTML Report:** Found when parallel execution is enabled, It shows the workers uses and how the work(Test Scenarios) are distributed between them.
 
 ---
 
