@@ -4,5 +4,10 @@
     "html": {
       "outputFilePath": "../../../../TestResults/LivingDoc.html"
     }
-  }
+  },
+  "plugins": [
+    {
+      "name": "ReportPortal.Reqnroll"
+    }
+  ]
 }

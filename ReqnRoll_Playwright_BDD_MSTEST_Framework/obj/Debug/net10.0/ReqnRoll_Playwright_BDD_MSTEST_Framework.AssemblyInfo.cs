@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReqnRoll_Playwright_BDD_MSTEST_Framework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baac59e5a68c4be0847f8bbd4e79cddc6094397f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22c516ab0024c79faa77dfbe4edec8116b950297")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReqnRoll_Playwright_BDD_MSTEST_Framework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReqnRoll_Playwright_BDD_MSTEST_Framework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

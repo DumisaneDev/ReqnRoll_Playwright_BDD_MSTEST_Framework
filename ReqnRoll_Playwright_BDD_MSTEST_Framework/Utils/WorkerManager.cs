@@ -10,7 +10,6 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 {
     public static class WorkerManager
     {
-        private static int _isWorkerCountLogged = 0;
         private static string _totalWorkersDetected = "1";
         private static ConcurrentStack<int> _workerIdPool;
         private static readonly AsyncLocal<int> _assignedWorkerId = new AsyncLocal<int>();
@@ -115,6 +114,8 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
                 _assignedWorkerId.Value = 0;
             }
         }
+
+        private static int _isWorkerCountLogged = 0;
 
         public static void IncrementTestCount()
         {

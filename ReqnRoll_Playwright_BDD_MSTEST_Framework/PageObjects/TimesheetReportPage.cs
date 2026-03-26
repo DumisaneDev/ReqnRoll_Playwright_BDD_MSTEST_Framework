@@ -22,11 +22,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.PageObjects
         private ILocator loc_ddlMonth => _page.Locator("#ddlMonth");
         private ILocator loc_btnGenerateReport => _page.Locator("#btnGenerateReport");
         private ILocator loc_btnBack => _page.Locator("#btnBack");
-
-        // Sidebar Navigation
-        private ILocator loc_lnkReports => _page.GetByRole(AriaRole.Link, new() { Name = "Report" });
     
-
         public async Task selectEmployee(string employeeName, string scenarioTitle)
         {
             await selectDropdownValue(loc_ddlEmployees, employeeName, scenarioTitle);

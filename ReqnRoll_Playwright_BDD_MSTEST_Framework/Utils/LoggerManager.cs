@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Serilog;
+using ReportPortal.Serilog;
 
 namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 {
@@ -19,6 +20,7 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
                 .WriteTo.File(Path.Combine(ResultsPath, "Script_logs.txt"), rollingInterval: RollingInterval.Day)
+                .WriteTo.ReportPortal()
                 .CreateLogger();
 
             Log.Information("Serilog initialized. Results path: {ResultsPath}", ResultsPath);

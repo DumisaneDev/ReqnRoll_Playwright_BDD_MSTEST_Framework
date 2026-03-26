@@ -1,0 +1,25 @@
+{
+    "enabled": true,
+    "server": {
+        "url": "http://localhost:8080/api/v1",
+        "project": "superadmin_personal",
+        "authentication": {
+            "uuid": "Playwright-coreops-key__kwgbfRySTWuSG6klSx9iXFtcbeWeJKfakxdOgWiTufGrwUon1S1oIyYbS0Gm55A"
+        },
+        "launch": {
+            "name": "Playwright ReqnRoll CoreOps Test Suite",
+            "description": "A detailed Playwright Test Automation Suite for Lubanzi's CoreOps Employee Management Suite.",
+            "debugMode": false,
+            "attributes": [
+                {
+                    "key": "framework",
+                    "value": "ReqnRoll"
+                },
+                {
+                    "key": "browser",
+                    "value": "Chromium"
+                }
+            ]
+        }
+    }
+}

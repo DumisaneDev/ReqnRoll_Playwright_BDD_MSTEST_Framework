@@ -13,16 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.4">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="Microsoft.Playwright" Version="1.58.0" />
     <PackageReference Include="Microsoft.Playwright.MSTest" Version="1.58.0" />
+    <PackageReference Include="ReportPortal.Reqnroll" Version="1.6.0" />
+    <PackageReference Include="ReportPortal.Serilog" Version="2.0.0" />
     <PackageReference Include="Reqnroll.MsTest" Version="3.2.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.10.2" />
     <PackageReference Include="MSTest.TestFramework" Version="3.10.2" />
@@ -37,6 +39,10 @@
     </None>
     <None Update="reqnroll.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\ReportPortal\ReportPortal.json">
+      <Link>ReportPortal.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

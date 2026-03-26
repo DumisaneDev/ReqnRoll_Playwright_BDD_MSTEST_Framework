@@ -15,6 +15,8 @@ dotnet add package Serilog --project .\ReqnRoll_Playwright_BDD_MSTEST_Framework\
 dotnet add package Serilog.Sinks.Console --project .\ReqnRoll_Playwright_BDD_MSTEST_Framework\ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj
 dotnet add package Serilog.Sinks.File --project .\ReqnRoll_Playwright_BDD_MSTEST_Framework\ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj
 
+dotnet add package ReportPortal.Reqnroll --project .\ReqnRoll_Playwright_BDD_MSTEST_Framework\ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj
+
 dotnet build ReqnRoll_Playwright_BDD_MSTEST_Framework/ReqnRoll_Playwright_BDD_MSTEST_Framework.csproj
 powershell -ExecutionPolicy Bypass -File .\ReqnRoll_Playwright_BDD_MSTEST_Framework\bin\Debug\net10.0\playwright.ps1 install
 

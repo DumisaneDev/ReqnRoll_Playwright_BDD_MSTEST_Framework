@@ -69,6 +69,7 @@ Invoke-Expression $command
 # Capture the exit code but exit with 0 so the pipeline task doesn't turn red.
 # The 'Publish Test Results' task in the pipeline will handle marking the build as failed if tests didn't pass.
 $exitCode = $LASTEXITCODE
+
 if ($exitCode -ne 0) {
     Write-Host "--- Tests finished with some failures (Exit Code: $exitCode) ---" -ForegroundColor Yellow
 } else {

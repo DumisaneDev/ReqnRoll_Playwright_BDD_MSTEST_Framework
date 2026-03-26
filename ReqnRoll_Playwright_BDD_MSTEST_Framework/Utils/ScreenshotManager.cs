@@ -42,6 +42,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 
                 await _page.ScreenshotAsync(new PageScreenshotOptions { Path = fullScreenshotPath });
                 Log.Information($"Screenshot captured: {fullScreenshotPath}");
+
+                // Attach to ReportPortal
+                try
+                {
+                    ReportPortal.Shared.Context.Current.Log.Info(sanitizedAction, "image/png", File.ReadAllBytes(fullScreenshotPath));
+                }
+                catch (Exception rpEx)
+                {
+                    Log.Warning($"Failed to attach screenshot to ReportPortal: {rpEx.Message}");
+                }
             }
             catch (Exception ex)
             {

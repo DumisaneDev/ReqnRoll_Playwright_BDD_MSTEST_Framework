@@ -13,26 +13,22 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 
         public static void GenerateWorkerSummaryReport()
         {
-            if (WorkerManager.WorkerCount <= 1)
-            {
-                Log.Information("Single worker detected. Skipping parallel execution summary report.");
-                return;
-            }
-
             try
             {
-                string livingDocPath = Path.Combine(ResultsPath, "LivingDoc.html");
-                bool fileReady = WaitForLivingDoc(livingDocPath);
-
                 var summaryHtml = BuildSummaryHtml();
+                string summaryPath = Path.Combine(ResultsPath, "worker-summary.html");
+                
+                // Ensure directory exists
+                if (!Directory.Exists(ResultsPath)) Directory.CreateDirectory(ResultsPath);
+                
+                File.WriteAllText(summaryPath, summaryHtml);
+                Log.Information("Worker summary data saved for post-processing at: {SummaryPath}", summaryPath);
 
-                if (fileReady)
+                // Still attempt direct injection as a courtesy
+                string livingDocPath = Path.Combine(ResultsPath, "LivingDoc.html");
+                if (File.Exists(livingDocPath))
                 {
                     InjectIntoLivingDoc(livingDocPath, summaryHtml);
-                }
-                else
-                {
-                    GenerateStandaloneReport(summaryHtml);
                 }
             }
             catch (Exception ex)
@@ -41,34 +37,13 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
             }
         }
 
-        private static bool WaitForLivingDoc(string path)
-        {
-            int attempts = 0;
-            while (attempts < 20)
-            {
-                try
-                {
-                    if (File.Exists(path))
-                    {
-                        using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                        {
-                            return true;
-                        }
-                    }
-                }
-                catch (IOException) { }
-                Thread.Sleep(500);
-                attempts++;
-            }
-            return false;
-        }
-
         private static string BuildSummaryHtml()
         {
             var summaryHtml = new StringBuilder();
-            summaryHtml.AppendLine("<div id='worker-summary' style='margin-top: 50px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; font-family: sans-serif; background-color: #f9f9f9;'>");
-            summaryHtml.AppendLine("    <h2 style='color: #333; border-bottom: 2px solid #ED7725; padding-bottom: 10px;'>Parallel Execution Summary</h2>");
-            summaryHtml.AppendLine($"    <p><strong>Total Workers Employed:</strong> {WorkerManager.TotalWorkersDetected}</p>");
+            summaryHtml.AppendLine("<!-- WORKER_SUMMARY_START -->");
+            summaryHtml.AppendLine("<div id='worker-summary' style='margin: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; font-family: sans-serif; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0,0,0,0.1); clear: both;'>");
+            summaryHtml.AppendLine("    <h2 style='color: #333; border-bottom: 2px solid #ED7725; padding-bottom: 10px; margin-top: 0;'>Parallel Execution Summary</h2>");
+            summaryHtml.AppendLine($"    <p><strong>Total Workers Employed:</strong> <span style='color: #ED7725; font-weight: bold;'>{WorkerManager.TotalWorkersDetected}</span></p>");
             summaryHtml.AppendLine("    <table style='width: 100%; border-collapse: collapse; margin-top: 20px;'>");
             summaryHtml.AppendLine("        <thead>");
             summaryHtml.AppendLine("            <tr style='background-color: #ED7725; color: white;'>");
@@ -98,31 +73,28 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
             summaryHtml.AppendLine("        </tbody>");
             summaryHtml.AppendLine("    </table>");
             summaryHtml.AppendLine("</div>");
+            summaryHtml.AppendLine("<!-- WORKER_SUMMARY_END -->");
             return summaryHtml.ToString();
         }
 
         private static void InjectIntoLivingDoc(string path, string summaryHtml)
         {
-            string content = File.ReadAllText(path);
-            if (content.Contains("</body>"))
+            try
             {
-                content = content.Replace("</body>", summaryHtml + "</body>");
-                File.WriteAllText(path, content);
-                Log.Information("Worker summary injected into LivingDoc.html");
-            }
-            else
-            {
-                File.AppendAllText(path, summaryHtml);
-                Log.Information("Worker summary appended to LivingDoc.html");
-            }
-        }
+                string content = File.ReadAllText(path);
+                if (content.Contains("WORKER_SUMMARY_START")) return;
 
-        private static void GenerateStandaloneReport(string summaryHtml)
-        {
-            string summaryPath = Path.Combine(ResultsPath, "WorkerSummary.html");
-            string fullHtml = $"<html><head><title>Worker Summary</title></head><body style='padding: 20px;'>{summaryHtml}</body></html>";
-            File.WriteAllText(summaryPath, fullHtml);
-            Log.Information("Standalone WorkerSummary.html generated at: {SummaryPath}", summaryPath);
+                var bodyMatch = System.Text.RegularExpressions.Regex.Match(content, @"<body[^>]*>", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                if (bodyMatch.Success)
+                {
+                    int insertIndex = bodyMatch.Index + bodyMatch.Length;
+                    content = content.Insert(insertIndex, "\n" + summaryHtml);
+                    File.WriteAllText(path, content);
+                    Log.Information("Worker summary injected into LivingDoc.html");
+                }
+            }
+            catch { /* Ignore errors during direct injection */ }
         }
     }
 }

@@ -70,6 +70,16 @@ namespace ReqnRoll_Playwright_BDD_MSTEST_Framework.Utils
 
             await _context.Tracing.StopAsync(new TracingStopOptions { Path = traceFilePath });
             Console.WriteLine($"Trace saved to: {traceFilePath}");
+
+            // Attach trace to ReportPortal
+            try
+            {
+                ReportPortal.Shared.Context.Current.Log.Info($"Trace: {traceFileName}", "application/zip", File.ReadAllBytes(traceFilePath));
+            }
+            catch (Exception rpEx)
+            {
+                Console.WriteLine($"Failed to attach trace to ReportPortal: {rpEx.Message}");
+            }
         }
 
         public async Task DisposeAsync()
