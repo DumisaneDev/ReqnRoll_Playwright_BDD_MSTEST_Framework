@@ -1,13 +1,13 @@
 {
-  "$schema": "https://schemas.reqnroll.net/reqnroll-config-latest.json",
-  "formatters": {
-    "html": {
-      "outputFilePath": "../../../../TestResults/LivingDoc.html"
-    }
-  },
-  "plugins": [
-    {
-      "name": "ReportPortal.Reqnroll"
-    }
-  ]
+    "$schema": "https://schemas.reqnroll.net/reqnroll-config-latest.json",
+    "formatters": {
+        "html": {
+            "outputFilePath": "../../../../TestResults/LivingDoc.html"
+        }
+    },
+    "plugins": [
+        {
+            "name": "ReportPortal.Reqnroll"
+        }
+    ]
 }

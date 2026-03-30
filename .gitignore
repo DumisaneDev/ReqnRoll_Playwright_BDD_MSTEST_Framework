@@ -30,3 +30,8 @@ ms-playwright/
 # NuGet
 packages/
 *.nupkg
+
+# Framework
+.\ReqnRoll_Playwright_BDD_MSTEST_Framework\Test Data\testdata.json
+.README.md
+.FRAMEWORK_ARCHITECTURE.md
