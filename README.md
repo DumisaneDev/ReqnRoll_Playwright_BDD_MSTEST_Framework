@@ -10,36 +10,40 @@ Welcome to my flagship automation project\! I engineered this suite to solve the
 
 I believe every tool in a stack should serve a specific purpose for the team. Here is the engine under the hood:
 
-\<table width="100%"\>
-\<thead\>
-\<tr align="left"\>
-\<th width="30%"\>🚀 Technology\</th\>
-\<th width="70%"\>🎯 My "Why" (The Personality Behind the Choice)\</th\>
-\</tr\>
-\</thead\>
-\<tbody\>
-\<tr\>
-\<td\>\<b\>.NET 10.0\</b\>\</td\>
-\<td\>The latest and greatest. I believe in staying on the cutting edge to leverage the best performance features available.\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<b\>ReqnRoll (BDD)\</b\>\</td\>
-\<td\>The "Translator." It turns \<i\>"Given I am on the login page"\</i\> into actual code, so stakeholders and developers stay on the same page.\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<b\>Playwright\</b\>\</td\>
-\<td\>My chosen weapon. It’s fast, modern, and—most importantly—it respects your time by eliminating flaky test behavior.\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<b\>MSTest (Parallel)\</b\>\</td\>
-\<td\>I tuned this to run 16 scenarios at once. If your CPU fans aren't spinning, you're not testing hard enough.\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<b\>ReportPortal & Docker\</b\>\</td\>
-\<td\>I use AI-powered dashboards because looking at raw console logs is a thing of the past. It's about data-driven decisions.\</td\>
-\</tr\>
-\</tbody\>
-\</table\>
+<table width="100%">
+<thead>
+<tr align="left">
+<th width="30%">🚀 Technology</th>
+<th width="70%">🎯 My "Why" (The Personality Behind the Choice)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>.NET 10.0</b></td>
+<td>The latest and greatest. If it’s not .NET 10, is it even a modern framework?</td>
+</tr>
+<tr>
+<td><b>ReqnRoll (BDD)</b></td>
+<td>The "Translator." It turns <i>"Given I am on the login page"</i> into actual code, so the Product Owner can sleep at night.</td>
+</tr>
+<tr>
+<td><b>Playwright</b></td>
+<td>My chosen weapon. It’s like Selenium, but it actually respects your time and doesn't flake out for no reason.</td>
+</tr>
+<tr>
+<td><b>MSTest (Parallelized)</b></td>
+<td>I tuned this to run 16 scenarios at once. If your CPU fans aren't spinning, you're not testing hard enough.</td>
+</tr>
+<tr>
+<td><b>ReportPortal & Docker</b></td>
+<td>AI-powered dashboards because looking at raw console logs in 2026 is just masochism.</td>
+</tr>
+<tr>
+<td><b>EF Core</b></td>
+<td>To keep our database as clean as a whistle. No "ghost data" allowed here.</td>
+</tr>
+</tbody>
+</table>
 
 -----
 
