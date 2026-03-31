@@ -38,7 +38,7 @@ if (Test-Path -Path ".\TestResults") {
 }
 
 Write-Host "Creating new TestResults directory structure..." -ForegroundColor Cyan
-# Ensure directory is created, use -Force to overwrite if it somehow still exists
+
 New-Item -ItemType Directory -Path ".\TestResults" -Force | Out-Null
 New-Item -ItemType Directory -Path ".\TestResults\Screenshots" -Force | Out-Null
 New-Item -ItemType Directory -Path ".\TestResults\Traces" -Force | Out-Null
@@ -67,7 +67,6 @@ Write-Host "Running command: $command" -ForegroundColor Gray
 Invoke-Expression $command
 
 # Capture the exit code but exit with 0 so the pipeline task doesn't turn red.
-# The 'Publish Test Results' task in the pipeline will handle marking the build as failed if tests didn't pass.
 $exitCode = $LASTEXITCODE
 
 if ($exitCode -ne 0) {
