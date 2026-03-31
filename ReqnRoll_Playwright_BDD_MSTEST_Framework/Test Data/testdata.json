@@ -1,17 +1,17 @@
 {
     "TestSetting": {
-        "BaseUrl": "http://coreopsdev.lubanzi.tech",
-        "MailsacApiKey": "k_nRhgX3b3p0lyR00PPsGEw0CVeAxwivZZRWZh4",
+        "BaseUrl": "**********************",
+        "MailsacApiKey": "***************",
         "Headless": false,
-        "Database_Connection_String": "Server=102.22.83.108,50849;Database=TimesheetDev;User Id=QlityUser;Password=Lub@anzi001;TrustServerCertificate=True;",
+        "Database_Connection_String": "***********",
 
         "EmployeeEmail": "employee@mailsac.com",
-        "EmpUsername": "phumzilem@lubanzi.tech",
-        "EmpPassword": "Buhle@001",
-        "AdminEmail": "Admin@Lubanzi.tech",
-        "AdminPassword": "Test@001",
+        "EmpUsername": "***********************",
+        "EmpPassword": "************",
+        "AdminEmail": "**************",
+        "AdminPassword": "*******************",
 
-        "RegisterUserEmail": "employee@mailsac.com",
+        "RegisterUserEmail": "********",
         "RegisterUserPassword": "wE7?wG8Qh",
         "RegisterUserFirstName": "Bruce",
         "RegisterUserLastName": "Wayne",
