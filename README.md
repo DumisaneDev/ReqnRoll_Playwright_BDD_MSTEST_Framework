@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🎭 Playwright BDD Test Suite
 
 A simple, human-readable automated testing suite for our web applications. This project uses "Gherkin" (Given/When/Then) so that anyone can understand what is being tested.
@@ -162,4 +161,3 @@ Open your terminal and run the helper script:
 -----
 
 **Final Note:** Whether you're a developer joining the team or a recruiter looking for an engineer who takes quality seriously—this is for you. **Let’s build something that doesn't break\!**
->>>>>>> 121b4848185be96dba7456731fa028d6fe872286
